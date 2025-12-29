@@ -101,7 +101,7 @@ const SecurityAudit = () => {
                     {getStatusText()}
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    {checkedItems.length} of {checklistItems.length} practices followed
+                    {checkedItems.length} of {checklistItems.length} best practices followed
                   </p>
                 </div>
               </div>
