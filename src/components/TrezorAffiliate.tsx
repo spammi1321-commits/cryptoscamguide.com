@@ -31,7 +31,6 @@ const trezorProducts = [
     borderColor: "border-primary/20",
     url: "https://trezor.io/trezor-safe-5",
     image: trezorSafe5,
-    featured: true,
   },
   {
     id: "safe-7",
@@ -82,18 +81,8 @@ const TrezorAffiliate = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className={cn(
-                "group relative flex flex-col p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] w-full max-w-xs lg:max-w-none lg:flex-1",
-                product.featured
-                  ? "bg-primary/5 border-primary/30 shadow-lg shadow-primary/5"
-                  : "bg-card border-border/50 hover:border-border"
-              )}
+              className="group relative flex flex-col p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] w-full max-w-xs lg:max-w-none lg:flex-1 bg-card border-border/50 hover:border-border"
             >
-              {product.featured && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
-                  Most Popular
-                </span>
-              )}
 
               {/* Product Image */}
               <div className="flex justify-center mb-4 pt-2">
