@@ -20,23 +20,13 @@ const SectionLoader = () => (
 );
 
 const Index = () => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      toast("Pro tip: Press / to quickly search scams", {
-        icon: "⌨️",
-        duration: 5000,
-      });
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       <Helmet>
         <title>Crypto Scam Guide | Protect Your Crypto and Yourself</title>
         <meta
           name="description"
-          content="Learn to identify and avoid 30+ cryptocurrency scams including address poisoning, phishing, and rug pulls. Free interactive guide with hardware wallet security tips."
+          content="Stay safe from 30+ crypto scams like phishing, address poisoning, rug pulls, and more. An interactive guide with clear steps for better crypto security."
         />
         <link rel="canonical" href="https://www.cryptoscamguide.com/" />
       </Helmet>
