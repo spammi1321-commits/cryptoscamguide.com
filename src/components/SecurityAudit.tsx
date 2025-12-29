@@ -136,20 +136,14 @@ const SecurityAudit = () => {
           </motion.div>
 
           {/* Checklist */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-3"
-          >
+          <div className="space-y-3">
             {checklistItems.map((item, index) => (
               <motion.button
                 key={item.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
                 onClick={() => toggleItem(item.id)}
                 className={cn(
                   "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-300",
@@ -189,7 +183,7 @@ const SecurityAudit = () => {
                 </div>
               </motion.button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
