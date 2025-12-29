@@ -104,14 +104,14 @@ const HardwareWall = () => {
           <div className="bg-card rounded-b-2xl border border-border/50 overflow-hidden">
             {features.map((feature, index) => <div key={feature.name} className={cn("flex items-center justify-between p-4 md:p-5", index !== features.length - 1 && "border-b border-border/50")}>
                 <span className="font-medium text-sm md:text-base">{feature.name}</span>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground text-right max-w-[140px] sm:max-w-[200px] md:max-w-none">
-                  {activeType === "hot" ? <span className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground text-right max-w-[160px] sm:max-w-[220px] md:max-w-none">
+                  {activeType === "hot" ? <>
                       <X className="w-4 h-4 text-alert flex-shrink-0" aria-hidden="true" />
                       <span>{feature.hot}</span>
-                    </span> : <span className="flex items-center gap-2">
+                    </> : <>
                       <Check className="w-4 h-4 text-success flex-shrink-0" aria-hidden="true" />
                       <span>{feature.cold}</span>
-                    </span>}
+                    </>}
                 </div>
               </div>)}
           </div>
