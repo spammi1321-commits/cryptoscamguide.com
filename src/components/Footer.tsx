@@ -28,12 +28,6 @@ const Footer = () => {
             Knowledge is your strongest defense.
           </p>
 
-          {/* Report scam CTA */}
-          <Button variant="alert" size="lg" className="mb-8">
-            <AlertTriangle className="w-5 h-5" />
-            Report a Scam
-          </Button>
-
           {/* Social links */}
           <div className="flex items-center gap-4">
             <a
