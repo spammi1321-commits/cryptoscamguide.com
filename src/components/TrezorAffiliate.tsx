@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 import trezorSafe3 from "@/assets/trezor-safe-3.png";
 import trezorSafe5 from "@/assets/trezor-safe-5.png";
-import trezorSafe7 from "@/assets/trezor-safe-7.png";
+import trezorSafe7 from "@/assets/trezor-safe-7.avif";
 
 const trezorProducts = [
   {
