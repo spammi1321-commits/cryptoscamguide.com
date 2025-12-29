@@ -113,10 +113,10 @@ const Hero = () => {
           duration: 0.6,
           delay: 0.8
         }} className="mt-12 flex justify-center">
-            <motion.div animate={{
+          <motion.div animate={{
             y: [0, 8, 0]
           }} transition={{
-            duration: 0.8,
+            duration: 1.2,
             repeat: Infinity,
             ease: "easeInOut"
           }} className="flex flex-col items-center -space-y-3">
