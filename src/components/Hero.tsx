@@ -92,11 +92,11 @@ const Hero = () => {
         }} className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-success" />
-              <span>100% Free, Always</span>
+              <span>Always Free</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>30+ Crypto Scams</span>
+              <span>30+ Scams Listed</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-warning" />
@@ -106,20 +106,20 @@ const Hero = () => {
 
           {/* Scroll indicator */}
           <motion.div initial={{
-            opacity: 0
-          }} animate={{
-            opacity: 1
-          }} transition={{
-            duration: 0.6,
-            delay: 0.8
-          }} className="mt-12 flex justify-center">
+          opacity: 0
+        }} animate={{
+          opacity: 1
+        }} transition={{
+          duration: 0.6,
+          delay: 0.8
+        }} className="mt-12 flex justify-center">
             <motion.div animate={{
-              y: [0, 8, 0]
-            }} transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}>
+            y: [0, 8, 0]
+          }} transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}>
               <ChevronDown className="w-6 h-6 text-muted-foreground" />
             </motion.div>
           </motion.div>
