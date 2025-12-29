@@ -37,7 +37,7 @@ const trezorProducts = [
     id: "safe-7",
     name: "Trezor Safe 7",
     tagline: "Ultimate Security",
-    description: "Top-tier protection with haptic feedback and premium build quality.",
+    description: "Advanced crypto security with the world's first transparent secure element, quantum-ready architecture, and encrypted Bluetooth.",
     icon: Fingerprint,
     color: "text-violet-400",
     bgColor: "bg-violet-500/10",
