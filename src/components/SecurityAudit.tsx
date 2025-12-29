@@ -10,7 +10,7 @@ const checklistItems = [
   { id: 4, label: "I never copy addresses from transaction history", category: "Transaction Safety" },
   { id: 5, label: "I only use bookmarked official DeFi sites", category: "Web Safety" },
   { id: 6, label: "I read signature requests carefully before signing", category: "Web Safety" },
-  { id: 7, label: "I regularly revoke unused token approvals", category: "Maintenance" },
+  { id: 7, label: "I regularly revoke unused dApp and token approvals", category: "Maintenance" },
   { id: 8, label: "I use separate wallets for different activities", category: "Maintenance" },
 ];
 
