@@ -7,7 +7,7 @@ const Hero = () => {
       behavior: "smooth"
     });
   };
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+  return <header className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" aria-label="Introduction">
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,hsl(210_100%_52%/0.15),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,hsl(0_72%_51%/0.08),transparent_50%)]" />
@@ -120,11 +120,11 @@ const Hero = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}>
-              <ChevronDown className="w-6 h-6 text-muted-foreground" />
+              <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
             </motion.div>
           </motion.div>
         </div>
       </div>
-    </section>;
+    </header>;
 };
 export default Hero;
