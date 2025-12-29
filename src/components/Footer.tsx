@@ -1,8 +1,44 @@
 import { motion } from "framer-motion";
-import { Shield, AlertTriangle, Twitter, MessageCircle, Github } from "lucide-react";
+import { Shield, Twitter, Linkedin, Facebook, Link2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { toast } from "sonner";
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+  const shareUrl = "https://www.cryptoscamguide.com";
+  const shareTitle = "Free Crypto Scam Guide - Protect Your Crypto";
+  const shareText = "Stay safe from 30+ crypto scams. Check out this free guide!";
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      toast.success("Link copied to clipboard!");
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast.error("Failed to copy link");
+    }
+  };
+
+  const shareLinks = [
+    {
+      name: "Twitter",
+      icon: Twitter,
+      url: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`,
+    },
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+    },
+    {
+      name: "Facebook",
+      icon: Facebook,
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+    },
+  ];
+
   return (
     <footer className="py-16 border-t border-border/50 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,hsl(220_20%_12%),transparent_70%)]" />
@@ -28,6 +64,31 @@ const Footer = () => {
             Knowledge is your strongest defense.
           </p>
 
+          {/* Share buttons */}
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-sm text-muted-foreground font-medium">Share this guide</p>
+            <div className="flex items-center gap-3">
+              {shareLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Share on ${link.name}`}
+                  className="p-3 rounded-full bg-secondary/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary hover:border-border transition-all duration-300"
+                >
+                  <link.icon className="w-5 h-5" />
+                </a>
+              ))}
+              <button
+                onClick={handleCopyLink}
+                aria-label="Copy link"
+                className="p-3 rounded-full bg-secondary/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary hover:border-border transition-all duration-300"
+              >
+                {copied ? <Check className="w-5 h-5 text-success" /> : <Link2 className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
         </motion.div>
 
         {/* Bottom bar */}
