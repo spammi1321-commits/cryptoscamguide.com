@@ -207,7 +207,7 @@ const ScamsCatalog = () => {
                   <div className="relative z-10">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-3">
-                      <div className={cn("p-2.5 rounded-lg bg-secondary/50", category?.color)}>
+                      <div className={cn("p-2.5 rounded-lg bg-secondary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3", category?.color)}>
                         {category && <category.icon className="w-5 h-5" />}
                       </div>
                       <span
@@ -261,7 +261,7 @@ const ScamsCatalog = () => {
               size="lg"
               className="gap-2"
             >
-              Show More ({searchedScams.length - INITIAL_DISPLAY_COUNT} more)
+              Show More
               <ChevronDown className="w-4 h-4" />
             </Button>
           </motion.div>
