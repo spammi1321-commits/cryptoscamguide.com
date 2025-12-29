@@ -121,6 +121,23 @@ const ScamsCatalog = () => {
           ))}
         </motion.div>
 
+        {/* Active filter label - only visible on mobile when category text is hidden */}
+        {selectedCategory !== "all" && (
+          <div className="sm:hidden text-center mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+              {(() => {
+                const category = scamCategories.find(cat => cat.id === selectedCategory);
+                return category ? (
+                  <>
+                    <category.icon className="w-4 h-4" />
+                    {category.name}
+                  </>
+                ) : null;
+              })()}
+            </span>
+          </div>
+        )}
+
         {/* Results count */}
         <div className="text-center mb-8">
           <span className="text-sm text-muted-foreground">
