@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Scam Library", href: "#scams" },
   { label: "Hardware Defense", href: "#hardware" },
   { label: "Security Audit", href: "#audit" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const Navbar = () => {
