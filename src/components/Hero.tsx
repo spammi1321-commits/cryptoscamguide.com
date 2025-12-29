@@ -31,7 +31,7 @@ const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-alert"></span>
             </span>
-            <span className="text-sm text-muted-foreground font-medium">$14B+ lost to crypto scams in 2025</span>
+            <span className="text-sm text-muted-foreground font-medium">$6.0 billion+ lost to crypto scams in 2025</span>
           </motion.div>
 
           {/* Main heading */}
