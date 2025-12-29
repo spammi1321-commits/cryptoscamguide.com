@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Shield, Cpu, Fingerprint } from "lucide-react";
+import { ExternalLink, Shield, Cpu, Atom } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ const trezorProducts = [
     name: "Trezor Safe 7",
     tagline: "Ultimate Security",
     description: "Most advanced security with the world's first transparent secure element, quantum-ready architecture, and wireless connectivity.",
-    icon: Fingerprint,
+    icon: Atom,
     color: "text-violet-400",
     bgColor: "bg-violet-500/10",
     borderColor: "border-violet-500/20",
