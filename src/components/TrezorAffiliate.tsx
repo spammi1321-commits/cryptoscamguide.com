@@ -88,8 +88,9 @@ const TrezorAffiliate = () => {
               <div className="flex justify-center mb-4 pt-2">
                 <img
                   src={product.image}
-                  alt={product.name}
+                  alt={`${product.name} hardware wallet - ${product.tagline}`}
                   className="h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
               </div>
 
