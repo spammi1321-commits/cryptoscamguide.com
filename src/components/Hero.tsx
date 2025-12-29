@@ -35,7 +35,7 @@ const Hero = () => {
           </motion.div>
 
           {/* Main heading */}
-          <motion.h1 initial={{
+          <motion.div initial={{
           opacity: 0,
           y: 30
         }} animate={{
@@ -44,10 +44,12 @@ const Hero = () => {
         }} transition={{
           duration: 0.6,
           delay: 0.1
-        }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-6 leading-[1.15] tracking-tight text-balance">
-            Don't Be the Next{" "}
-            <span className="gradient-text-alert">Crypto Scam Victim.</span>
-          </motion.h1>
+        }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-6 leading-[1.15] tracking-tight text-balance">
+              Don't Be the Next{" "}
+              <span className="gradient-text-alert">Crypto Scam Victim.</span>
+            </h1>
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p initial={{
