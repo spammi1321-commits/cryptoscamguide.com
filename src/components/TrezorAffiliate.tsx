@@ -12,7 +12,7 @@ const trezorProducts = [
     id: "safe-3",
     name: "Trezor Safe 3",
     tagline: "Essential Security",
-    description: "Entry-level hardware wallet with secure element chip. Perfect for beginners.",
+    description: "Entry-level hardware wallet with secure element chip and physical buttons. Perfect for beginners.",
     icon: Shield,
     color: "text-emerald-400",
     bgColor: "bg-emerald-500/10",
