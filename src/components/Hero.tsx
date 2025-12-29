@@ -103,27 +103,27 @@ const Hero = () => {
               <span>No Jargon, No BS</span>
             </div>
           </motion.div>
-        </div>
 
-        {/* Scroll indicator */}
-        <motion.div initial={{
-        opacity: 0
-      }} animate={{
-        opacity: 1
-      }} transition={{
-        duration: 0.6,
-        delay: 0.8
-      }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <motion.div animate={{
-          y: [0, 8, 0]
-        }} transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}>
-            <ChevronDown className="w-6 h-6 text-muted-foreground" />
+          {/* Scroll indicator */}
+          <motion.div initial={{
+            opacity: 0
+          }} animate={{
+            opacity: 1
+          }} transition={{
+            duration: 0.6,
+            delay: 0.8
+          }} className="mt-12 flex justify-center">
+            <motion.div animate={{
+              y: [0, 8, 0]
+            }} transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}>
+              <ChevronDown className="w-6 h-6 text-muted-foreground" />
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>;
 };
