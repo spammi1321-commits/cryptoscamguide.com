@@ -44,9 +44,9 @@ const Hero = () => {
         }} transition={{
           duration: 0.6,
           delay: 0.1
-        }} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display mb-6 leading-[1.1] tracking-tight">
-            Don't Be the{" "}
-            <span className="gradient-text-alert">Next Crypto Scam Victim.</span>
+        }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-6 leading-[1.15] tracking-tight text-balance">
+            Don't Be the Next{" "}
+            <span className="gradient-text-alert">Crypto Scam Victim.</span>
           </motion.h1>
 
           {/* Subtitle */}
