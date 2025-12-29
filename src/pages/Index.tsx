@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ScrollProgress from "@/components/ScrollProgress";
 
 // Lazy load below-the-fold components
 const ScamsCatalog = lazy(() => import("@/components/ScamsCatalog"));
@@ -29,6 +30,7 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
+        <ScrollProgress />
         <Navbar />
         <main role="main">
           <article>

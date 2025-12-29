@@ -36,7 +36,9 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled ? "glass" : "bg-transparent"
+        isScrolled 
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-background/10" 
+          : "bg-transparent"
       )}
     >
       <div className="container px-4 md:px-6">
