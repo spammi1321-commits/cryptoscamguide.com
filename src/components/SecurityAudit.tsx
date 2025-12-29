@@ -62,13 +62,13 @@ const SecurityAudit = () => {
         </motion.div>
 
         <div className="max-w-2xl mx-auto">
-          {/* Live status indicator */}
+          {/* Live status indicator - sticky */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="sticky top-4 z-20 mb-8"
           >
             <div
               className={cn(
