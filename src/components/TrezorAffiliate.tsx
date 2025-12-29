@@ -71,7 +71,7 @@ const TrezorAffiliate = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-5 max-w-4xl mx-auto">
           {trezorProducts.map((product, index) => (
             <motion.a
               key={product.id}
@@ -83,7 +83,7 @@ const TrezorAffiliate = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className={cn(
-                "group relative flex flex-col p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02]",
+                "group relative flex flex-col p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] w-full max-w-xs lg:max-w-none lg:flex-1",
                 product.featured
                   ? "bg-primary/5 border-primary/30 shadow-lg shadow-primary/5"
                   : "bg-card border-border/50 hover:border-border"
