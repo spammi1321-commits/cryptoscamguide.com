@@ -46,7 +46,7 @@ const Hero = () => {
           delay: 0.1
         }} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display mb-6 leading-[1.1] tracking-tight">
             Don't Be the{" "}
-            <span className="gradient-text-alert">Next Victim.</span>
+            <span className="gradient-text-alert">Next Crypto Scam Victim.</span>
           </motion.h1>
 
           {/* Subtitle */}
