@@ -9,6 +9,10 @@ import {
 
 const faqs = [
   {
+    question: "Why is my seed phrase so important, and how should I protect it?",
+    answer: "Your seed phrase (12-24 words) is the master key to all your crypto. Anyone with it has complete, irreversible access to your funds. NEVER type it on any website, app, or online form—no legitimate service will ever ask for it. Write it down on paper (or metal for fire/water resistance), store it in multiple secure physical locations, and never photograph, screenshot, or store it digitally. If someone asks for your seed phrase, it's always a scam—no exceptions."
+  },
+  {
     question: "What's the safest way to store my crypto?",
     answer: "A hardware wallet (like Trezor or Ledger) is the gold standard. It keeps your private keys offline, making them nearly impossible to steal remotely. For everyday use, keep only small amounts in hot wallets."
   },
