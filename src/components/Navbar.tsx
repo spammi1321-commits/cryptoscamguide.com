@@ -64,9 +64,6 @@ const Navbar = () => {
                 <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>
             ))}
-            <Button variant="glow" size="sm" className="ml-4" onClick={() => scrollTo("#scams")}>
-              Get Protected
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -96,9 +93,6 @@ const Navbar = () => {
                   {link.label}
                 </button>
               ))}
-              <Button variant="glow" className="mt-2" onClick={() => scrollTo("#scams")}>
-                Get Protected
-              </Button>
             </div>
           </motion.div>
         )}
