@@ -57,9 +57,9 @@ const ScamsCatalog = () => {
           <span className="inline-block px-4 py-1.5 rounded-full bg-alert/10 text-alert text-sm font-semibold mb-4">
             Know Your Enemy
           </span>
-          <h1 className="text-3xl md:text-5xl font-bold font-display mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">
             The Scam <span className="gradient-text-alert">Library</span>
-          </h1>
+          </h2>
           <p className="text-muted-foreground text-lg">
             30+ documented crypto scam techniques. Click any card to learn the attack pattern and your defense strategy.
           </p>
@@ -187,9 +187,9 @@ const ScamsCatalog = () => {
                     </div>
 
                     {/* Content */}
-                    <h2 className="text-lg font-semibold font-display mb-2 group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-lg font-semibold font-display mb-2 group-hover:text-primary transition-colors duration-300">
                       {scam.title}
-                    </h2>
+                    </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-3">
                       {scam.shortDesc}
                     </p>
