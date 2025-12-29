@@ -1,4 +1,5 @@
-import { Shield, AlertTriangle, ArrowDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronDown, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
@@ -7,76 +8,102 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background effects */}
-      <div className="absolute inset-0 hero-glow" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,hsl(38_92%_50%/0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,hsl(210_100%_52%/0.15),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,hsl(0_72%_51%/0.08),transparent_50%)]" />
       
-      {/* Floating elements */}
-      <div className="absolute top-1/4 left-10 md:left-20 animate-float opacity-20">
-        <Shield className="w-16 h-16 md:w-24 md:h-24 text-primary" />
-      </div>
-      <div className="absolute bottom-1/3 right-10 md:right-20 animate-float opacity-20" style={{ animationDelay: "2s" }}>
-        <AlertTriangle className="w-12 h-12 md:w-20 md:h-20 text-warning" />
-      </div>
+      {/* Grid pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(hsl(220_20%_15%/0.5)_1px,transparent_1px),linear-gradient(90deg,hsl(220_20%_15%/0.5)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
 
       <div className="container relative z-10 px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/50 mb-8 animate-fade-in">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-warning opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-warning"></span>
+          {/* Warning badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-alert/30 mb-8"
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-alert"></span>
             </span>
             <span className="text-sm text-muted-foreground font-medium">
-              Protecting crypto users worldwide
+              $14B+ lost to crypto scams in 2023
             </span>
-          </div>
+          </motion.div>
 
           {/* Main heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Don't Become a{" "}
-            <span className="gradient-text-warning">Crypto Victim</span>
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-display mb-6 leading-[1.1] tracking-tight"
+          >
+            Don't Be the{" "}
+            <span className="gradient-text-alert">Next Victim.</span>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            Learn to identify and protect yourself from the most common cryptocurrency scams. 
-            Knowledge is your best defense in the crypto world.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
+          >
+            The definitive guide to identifying and neutralizing crypto scams 
+            before they hit your wallet.
+          </motion.p>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <Button variant="hero" size="xl" onClick={scrollToScams}>
-              <Shield className="w-5 h-5" />
-              Explore Scam Types
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Button variant="hero" size="xl" onClick={scrollToScams} className="group">
+              <ShieldAlert className="w-5 h-5 transition-transform group-hover:scale-110" />
+              Learn to Protect Yourself
             </Button>
-            <Button variant="glass" size="xl" onClick={() => document.getElementById("tips")?.scrollIntoView({ behavior: "smooth" })}>
-              Protection Tips
-            </Button>
-          </div>
+          </motion.div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 mt-16 md:mt-20 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            <div className="text-center">
-              <p className="text-2xl md:text-4xl font-bold font-display gradient-text">$14B+</p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-1">Lost to scams in 2023</p>
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-success" />
+              <span>Free & Open</span>
             </div>
-            <div className="text-center">
-              <p className="text-2xl md:text-4xl font-bold font-display text-warning">46%</p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-1">Victims are 20-40 years old</p>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary" />
+              <span>Updated Weekly</span>
             </div>
-            <div className="text-center">
-              <p className="text-2xl md:text-4xl font-bold font-display text-success">80%</p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-1">Avoidable with education</p>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-warning" />
+              <span>Community Verified</span>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <ArrowDown className="w-6 h-6 text-muted-foreground" />
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="w-6 h-6 text-muted-foreground" />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
