@@ -31,7 +31,7 @@ const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-alert"></span>
             </span>
-            <span className="text-sm text-muted-foreground font-medium">$6 billion+ lost to crypto scams in 2025</span>
+            <span className="text-sm text-foreground/90 font-medium">$6 billion+ lost to crypto scams in 2025</span>
           </motion.div>
 
           {/* Main heading */}
@@ -123,7 +123,7 @@ const Hero = () => {
             ease: "easeInOut"
           }} className="flex flex-col items-center -space-y-3">
               <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
-              <ChevronDown className="w-6 h-6 text-muted-foreground/60" aria-hidden="true" />
+              <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
             </motion.div>
           </motion.div>
         </div>
