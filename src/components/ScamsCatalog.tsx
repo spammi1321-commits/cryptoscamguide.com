@@ -91,53 +91,72 @@ const ScamsCatalog = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="mb-12"
         >
-          <button
-            onClick={() => setSelectedCategory("all")}
-            className={cn(
-              "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300",
-              selectedCategory === "all"
-                ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
-            )}
-          >
-            All Scams
-          </button>
-          {scamCategories.map((category) => (
+          {/* Desktop: flex wrap centered */}
+          <div className="hidden sm:flex flex-wrap justify-center gap-2">
             <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              aria-label={`Filter by ${category.name}`}
+              onClick={() => setSelectedCategory("all")}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300",
-                selectedCategory === category.id
+                "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300",
+                selectedCategory === "all"
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
                   : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
               )}
             >
-              <category.icon className={cn("w-4 h-4", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
-              <span className="hidden sm:inline">{category.name}</span>
+              All Scams
             </button>
-          ))}
+            {scamCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                aria-label={`Filter by ${category.name}`}
+                className={cn(
+                  "flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300",
+                  selectedCategory === category.id
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
+                )}
+              >
+                <category.icon className={cn("w-4 h-4", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
+                {category.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile: grid layout */}
+          <div className="grid grid-cols-3 gap-2 sm:hidden">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={cn(
+                "flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl font-medium text-xs transition-all duration-300",
+                selectedCategory === "all"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                  : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
+              )}
+            >
+              <span className="text-lg">📋</span>
+              <span>All</span>
+            </button>
+            {scamCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                aria-label={`Filter by ${category.name}`}
+                className={cn(
+                  "flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl font-medium text-xs transition-all duration-300",
+                  selectedCategory === category.id
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
+                )}
+              >
+                <category.icon className={cn("w-5 h-5", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
+                <span className="text-center leading-tight">{category.name.split(' ')[0]}</span>
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Active filter label - only visible on mobile when category text is hidden */}
-        {selectedCategory !== "all" && (
-          <div className="sm:hidden text-center mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              {(() => {
-                const category = scamCategories.find(cat => cat.id === selectedCategory);
-                return category ? (
-                  <>
-                    <category.icon className="w-4 h-4" />
-                    {category.name}
-                  </>
-                ) : null;
-              })()}
-            </span>
-          </div>
-        )}
 
         {/* Results count */}
         <div className="text-center mb-8">
