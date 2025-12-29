@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown, ShieldAlert } from "lucide-react";
+import { ChevronDown, ShieldAlert, Gift, ListChecks, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const Hero = () => {
   const scrollToScams = () => {
@@ -91,16 +91,16 @@ const Hero = () => {
           delay: 0.5
         }} className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-success" />
+              <Gift className="w-4 h-4 text-success" />
               <span>Always Free</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
+              <ListChecks className="w-4 h-4 text-primary" />
               <span>30+ Scams Listed</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-warning" />
-              <span>No Jargon, No BS</span>
+              <Sparkles className="w-4 h-4 text-warning" />
+              <span>Beginner-Friendly</span>
             </div>
           </motion.div>
 
