@@ -6,7 +6,7 @@ type WalletType = "hot" | "cold";
 const features = [{
   name: "Private keys location",
   hot: "On internet-connected device",
-  cold: "Offline, on secure device"
+  cold: "On offline, secure device"
 }, {
   name: "Vulnerability to hacks",
   hot: "High - always connected",
