@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, ShieldAlert, Gift, ListChecks, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect, useState } from "react";
@@ -30,12 +30,22 @@ const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: str
 };
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   const scrollToScams = () => {
     document.getElementById("scams")?.scrollIntoView({
       behavior: "smooth"
     });
   };
-  return <header className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" aria-label="Introduction">
+  return <header ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" aria-label="Introduction">
       {/* Animated aurora background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
@@ -60,8 +70,8 @@ const Hero = () => {
       {/* Grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(hsl(220_20%_15%/0.5)_1px,transparent_1px),linear-gradient(90deg,hsl(220_20%_15%/0.5)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
 
-      <div className="container relative z-10 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <motion.div style={{ y: y2, opacity }} className="container relative z-10 px-4 md:px-6">
+        <motion.div style={{ y: y1 }} className="max-w-4xl mx-auto text-center">
           {/* Warning badge */}
           <motion.div initial={{
           opacity: 0,
@@ -180,8 +190,8 @@ const Hero = () => {
               <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
             </motion.div>
           </motion.div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </header>;
 };
 export default Hero;
