@@ -178,9 +178,9 @@ const ScamsCatalog = () => {
                       <span
                         className={cn(
                           "text-xs font-semibold px-2.5 py-1 rounded-full",
-                          scam.riskLevel === "Critical" && "bg-alert/20 text-alert",
-                          scam.riskLevel === "High" && "bg-orange-500/20 text-orange-400",
-                          scam.riskLevel === "Medium" && "bg-yellow-500/20 text-yellow-400"
+                          scam.riskLevel === "Critical" && "bg-alert/30 text-red-300",
+                          scam.riskLevel === "High" && "bg-orange-500/30 text-orange-300",
+                          scam.riskLevel === "Medium" && "bg-yellow-500/30 text-yellow-300"
                         )}
                       >
                         {scam.riskLevel}
