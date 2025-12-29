@@ -36,7 +36,7 @@ const trezorProducts = [
     id: "safe-7",
     name: "Trezor Safe 7",
     tagline: "Ultimate Security",
-    description: "Most advanced crypto security with the world's first transparent secure element and quantum-ready architecture.",
+    description: "Best crypto security with the world's first transparent secure element and quantum-ready architecture.",
     icon: Atom,
     color: "text-violet-400",
     bgColor: "bg-violet-500/10",
