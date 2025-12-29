@@ -1,8 +1,11 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
+import CursorGlow from "@/components/CursorGlow";
 
 // Lazy load below-the-fold components
 const ScamsCatalog = lazy(() => import("@/components/ScamsCatalog"));
@@ -18,6 +21,16 @@ const SectionLoader = () => (
 );
 
 const Index = () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      toast("Pro tip: Press / to quickly search scams", {
+        icon: "⌨️",
+        duration: 5000,
+      });
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -30,7 +43,9 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
+        <CursorGlow />
         <ScrollProgress />
+        <BackToTop />
         <Navbar />
         <main role="main">
           <article>
