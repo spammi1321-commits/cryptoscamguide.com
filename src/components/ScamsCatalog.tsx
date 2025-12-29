@@ -166,7 +166,7 @@ const ScamsCatalog = () => {
                 )}
               >
                 <category.icon className={cn("w-5 h-5", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
-                <span className="text-center leading-tight">{category.name.split(' ')[0]}</span>
+                <span className="text-center leading-tight">{getShortLabel(category.name)}</span>
               </button>
             ))}
           </div>
