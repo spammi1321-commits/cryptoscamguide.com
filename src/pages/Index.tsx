@@ -1,12 +1,20 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ScamsCatalog from "@/components/ScamsCatalog";
-import HardwareWall from "@/components/HardwareWall";
-import SecurityAudit from "@/components/SecurityAudit";
-import FAQ from "@/components/FAQ";
-// import TrezorAffiliate from "@/components/TrezorAffiliate"; // Temporarily removed
-import Footer from "@/components/Footer";
+
+// Lazy load below-the-fold components
+const ScamsCatalog = lazy(() => import("@/components/ScamsCatalog"));
+const HardwareWall = lazy(() => import("@/components/HardwareWall"));
+const SecurityAudit = lazy(() => import("@/components/SecurityAudit"));
+const FAQ = lazy(() => import("@/components/FAQ"));
+const Footer = lazy(() => import("@/components/Footer"));
+
+const SectionLoader = () => (
+  <div className="py-24 flex justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const Index = () => {
   return (
@@ -25,20 +33,25 @@ const Index = () => {
         <main role="main">
           <article>
             <Hero />
-            <ScamsCatalog />
+            <Suspense fallback={<SectionLoader />}>
+              <ScamsCatalog />
+            </Suspense>
           </article>
-          <aside>
-            <HardwareWall />
-          </aside>
-          <section aria-label="Security tools">
-            <SecurityAudit />
-          </section>
-          <section aria-label="Frequently asked questions">
-            <FAQ />
-          </section>
-          {/* <TrezorAffiliate /> */}
+          <Suspense fallback={<SectionLoader />}>
+            <aside>
+              <HardwareWall />
+            </aside>
+            <section aria-label="Security tools">
+              <SecurityAudit />
+            </section>
+            <section aria-label="Frequently asked questions">
+              <FAQ />
+            </section>
+          </Suspense>
         </main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
     </>
   );
