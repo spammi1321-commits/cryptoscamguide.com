@@ -68,7 +68,7 @@ const SecurityAudit = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="sticky top-4 z-20 mb-8"
+            className="sticky top-16 md:top-20 z-30 mb-8 bg-background/95 backdrop-blur-sm py-2 -mx-2 px-2 rounded-2xl"
           >
             <div
               className={cn(
