@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     question: "What's the safest way to store my crypto?",
-    answer: "A hardware wallet (like Trezor or Ledger) is the gold standard. It keeps your private keys offline, making them nearly impossible to steal remotely. For everyday use, keep only small amounts in hot wallets."
+    answer: "A hardware wallet (like Trezor) is the gold standard. It keeps your private keys offline, making them nearly impossible to steal remotely. For everyday use, keep only small amounts in hot wallets."
   },
   {
     question: "How do I know if a website or DApp is legitimate?",
