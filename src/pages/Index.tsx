@@ -33,7 +33,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Free Crypto Scam Guide 2025 | Protect Your Wallet from 30+ Scams</title>
+        <title>Crypto Scam Guide | Protect Your Crypto and Yourself</title>
         <meta
           name="description"
           content="Learn to identify and avoid 30+ cryptocurrency scams including address poisoning, phishing, and rug pulls. Free interactive guide with hardware wallet security tips."
