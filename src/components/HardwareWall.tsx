@@ -16,10 +16,6 @@ const features = [{
   hot: "Relies on device security",
   cold: "Immune - isolated environment"
 }, {
-  name: "Transaction signing",
-  hot: "Software-based",
-  cold: "Hardware-based, visible on device"
-}, {
   name: "Recovery if device lost",
   hot: "Seed phrase (if saved)",
   cold: "Seed phrase + new device"
