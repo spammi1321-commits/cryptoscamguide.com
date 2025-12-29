@@ -24,7 +24,7 @@ const trezorProducts = [
     id: "safe-5",
     name: "Trezor Safe 5",
     tagline: "Advanced Protection",
-    description: "Color touchscreen display with enhanced security features for active traders.",
+    description: "Color touchscreen display with enhanced usability features for active crypto users.",
     icon: Cpu,
     color: "text-primary",
     bgColor: "bg-primary/10",
