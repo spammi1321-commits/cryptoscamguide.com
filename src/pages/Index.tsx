@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
-import CursorGlow from "@/components/CursorGlow";
 
 // Lazy load below-the-fold components
 const ScamsCatalog = lazy(() => import("@/components/ScamsCatalog"));
@@ -43,7 +42,6 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background">
-        <CursorGlow />
         <ScrollProgress />
         <BackToTop />
         <Navbar />
