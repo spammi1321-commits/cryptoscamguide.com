@@ -91,16 +91,16 @@ const Hero = () => {
           delay: 0.5
         }} className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
             <div className="flex items-center gap-2">
-              <Gift className="w-4 h-4 text-success" />
-              <span>Always Free</span>
-            </div>
-            <div className="flex items-center gap-2">
               <ListChecks className="w-4 h-4 text-primary" />
               <span>30+ Scams Listed</span>
             </div>
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-warning" />
-              <span>Beginner-Friendly</span>
+              <span>Interactive Guidance</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Gift className="w-4 h-4 text-success" />
+              <span>100% Free, No Sign-Ups</span>
             </div>
           </motion.div>
 
