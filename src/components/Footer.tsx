@@ -28,27 +28,6 @@ const Footer = () => {
             Knowledge is your strongest defense.
           </p>
 
-          {/* Social links */}
-          <div className="flex items-center gap-4">
-            <a
-              href="#"
-              className="p-3 rounded-xl bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-300"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="p-3 rounded-xl bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-300"
-            >
-              <MessageCircle className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              className="p-3 rounded-xl bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-300"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-          </div>
         </motion.div>
 
         {/* Bottom bar */}
