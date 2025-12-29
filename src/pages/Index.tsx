@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ScamsCatalog from "@/components/ScamsCatalog";
 import HardwareWall from "@/components/HardwareWall";
 import SecurityAudit from "@/components/SecurityAudit";
+import TrezorAffiliate from "@/components/TrezorAffiliate";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -25,6 +26,7 @@ const Index = () => {
           <ScamsCatalog />
           <HardwareWall />
           <SecurityAudit />
+          <TrezorAffiliate />
         </main>
         <Footer />
       </div>
