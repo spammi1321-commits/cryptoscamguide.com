@@ -116,7 +116,7 @@ const Hero = () => {
             <motion.div animate={{
             y: [0, 8, 0]
           }} transition={{
-            duration: 1.2,
+            duration: 0.8,
             repeat: Infinity,
             ease: "easeInOut"
           }} className="flex flex-col items-center -space-y-3">
