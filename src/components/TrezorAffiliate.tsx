@@ -67,7 +67,7 @@ const TrezorAffiliate = () => {
             Secure Your Crypto with <span className="gradient-text">Trezor</span>
           </h3>
           <p className="text-muted-foreground text-sm">
-            Industry-leading hardware wallets trusted by millions. Your keys, your crypto.
+            Industry-leading open-source hardware wallets trusted by millions. Your keys, your crypto.
           </p>
         </motion.div>
 
