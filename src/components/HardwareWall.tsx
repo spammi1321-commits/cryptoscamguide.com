@@ -8,7 +8,7 @@ const features = [{
   hot: "On internet-connected device",
   cold: "Offline, on secure chip"
 }, {
-  name: "Vulnerability to phishing",
+  name: "Vulnerability to hacks",
   hot: "High - always connected",
   cold: "Very Low - requires physical confirmation"
 }, {
