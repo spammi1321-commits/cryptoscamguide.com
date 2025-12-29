@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Search, ChevronDown } from "lucide-react";
 import { scamCategories, type ScamData, type ScamCategory } from "@/data/scams";
@@ -28,6 +28,36 @@ const ScamsCatalog = () => {
   const [selectedScam, setSelectedScam] = useState<ScamData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Keyboard shortcut: "/" to focus search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // 3D tilt effect handler
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+  };
 
   const filteredScams = selectedCategory === "all"
     ? scamCategories.flatMap(cat => cat.scams)
@@ -91,8 +121,9 @@ const ScamsCatalog = () => {
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <input
+              ref={searchInputRef}
               type="text"
-              placeholder="Search scams..."
+              placeholder="Search scams... (press /)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full h-12 pl-12 pr-4 rounded-xl bg-secondary/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
@@ -197,8 +228,11 @@ const ScamsCatalog = () => {
                   key={scam.id}
                   variants={cardVariants}
                   onClick={() => setSelectedScam(scam)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
                   aria-label={`Learn about ${scam.title} scam - ${scam.riskLevel} risk`}
-                  className="group relative bg-card rounded-xl border border-border/50 p-5 card-interactive overflow-hidden text-left"
+                  className="group relative bg-card rounded-xl border border-border/50 p-5 overflow-hidden text-left transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/5"
+                  style={{ transformStyle: "preserve-3d", transition: "transform 0.1s ease-out, box-shadow 0.3s ease" }}
                 >
                   {/* Glow effect on hover */}
                   <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/5 to-transparent" />
