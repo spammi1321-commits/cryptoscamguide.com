@@ -116,11 +116,12 @@ const Hero = () => {
             <motion.div animate={{
             y: [0, 8, 0]
           }} transition={{
-            duration: 2,
+            duration: 1.2,
             repeat: Infinity,
             ease: "easeInOut"
-          }}>
+          }} className="flex flex-col items-center -space-y-3">
               <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
+              <ChevronDown className="w-6 h-6 text-muted-foreground/60" aria-hidden="true" />
             </motion.div>
           </motion.div>
         </div>
