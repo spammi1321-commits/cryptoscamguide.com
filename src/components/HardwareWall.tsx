@@ -74,12 +74,12 @@ const HardwareWall = () => {
       }} className="flex justify-center mb-12">
           <div className="inline-flex p-1 rounded-xl bg-secondary/50 border border-border/50">
             <button onClick={() => setActiveType("hot")} className={cn("flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300", activeType === "hot" ? "bg-alert text-alert-foreground shadow-lg" : "text-muted-foreground hover:text-foreground")}>
-              <Wifi className="w-5 h-5" />
-              Hot Wallet
+              <Wifi className="w-5 h-5" aria-hidden="true" />
+              <span>Hot Wallet</span>
             </button>
             <button onClick={() => setActiveType("cold")} className={cn("flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300", activeType === "cold" ? "bg-success text-success-foreground shadow-lg" : "text-muted-foreground hover:text-foreground")}>
-              <HardDrive className="w-5 h-5" />
-              Cold Wallet
+              <HardDrive className="w-5 h-5" aria-hidden="true" />
+              <span>Cold Wallet</span>
             </button>
           </div>
         </motion.div>
@@ -100,10 +100,10 @@ const HardwareWall = () => {
           {/* Status indicator */}
           <div className={cn("flex items-center justify-center gap-3 p-4 rounded-t-2xl border border-b-0 transition-colors duration-500", activeType === "hot" ? "bg-alert/10 border-alert/30" : "bg-success/10 border-success/30")}>
             {activeType === "hot" ? <>
-                <AlertTriangle className="w-5 h-5 text-alert" />
+                <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
                 <span className="font-semibold text-alert">Higher Risk Profile</span>
               </> : <>
-                <Shield className="w-5 h-5 text-success" />
+                <Shield className="w-5 h-5 text-success" aria-hidden="true" />
                 <span className="font-semibold text-success">Maximum Security</span>
               </>}
           </div>
@@ -114,10 +114,10 @@ const HardwareWall = () => {
                 <span className="font-medium text-sm md:text-base">{feature.name}</span>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground text-right max-w-[200px] md:max-w-none">
                   {activeType === "hot" ? <span className="flex items-center gap-2">
-                      <X className="w-4 h-4 text-alert flex-shrink-0" />
+                      <X className="w-4 h-4 text-alert flex-shrink-0" aria-hidden="true" />
                       <span className="hidden md:inline">{feature.hot}</span>
                     </span> : <span className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-success flex-shrink-0" />
+                      <Check className="w-4 h-4 text-success flex-shrink-0" aria-hidden="true" />
                       <span className="hidden md:inline">{feature.cold}</span>
                     </span>}
                 </div>
@@ -141,7 +141,7 @@ const HardwareWall = () => {
           <div className="pro-tip animate-pulse-glow">
             <div className="flex items-start gap-4">
               <div className="p-2 rounded-lg bg-primary/20">
-                <Shield className="w-5 h-5 text-primary" />
+                <Shield className="w-5 h-5 text-primary" aria-hidden="true" />
               </div>
               <div>
                 <p className="font-semibold font-display mb-1">Pro Tip</p>
