@@ -1,30 +1,67 @@
-import { Shield, Heart } from "lucide-react";
+import { motion } from "framer-motion";
+import { Shield, AlertTriangle, Twitter, MessageCircle, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    <footer className="py-12 border-t border-border/50">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="py-16 border-t border-border/50 relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,hsl(220_20%_12%),transparent_70%)]" />
+
+      <div className="container px-4 md:px-6 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-12"
+        >
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Shield className="w-6 h-6 text-primary" />
-            <span className="font-display font-bold">CryptoSafe</span>
+          <div className="flex items-center gap-2.5 mb-6">
+            <Shield className="w-8 h-8 text-primary" />
+            <span className="font-display font-bold text-xl tracking-tight">
+              CryptoScam<span className="text-primary">Guide</span>
+            </span>
           </div>
 
-          {/* Message */}
-          <p className="text-muted-foreground text-sm text-center">
-            Educating and protecting the crypto community from scams.
+          <p className="text-muted-foreground max-w-md mb-8">
+            Protecting the crypto community through education. 
+            Knowledge is your strongest defense.
           </p>
 
-          {/* Made with love */}
-          <p className="flex items-center gap-1 text-sm text-muted-foreground">
-            Made with <Heart className="w-4 h-4 text-danger fill-danger" /> for the crypto community
-          </p>
-        </div>
+          {/* Report scam CTA */}
+          <Button variant="alert" size="lg" className="mb-8">
+            <AlertTriangle className="w-5 h-5" />
+            Report a Scam
+          </Button>
 
-        <div className="mt-8 pt-8 border-t border-border/30 text-center">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} CryptoSafe. This is an educational resource. Always do your own research.
+          {/* Social links */}
+          <div className="flex items-center gap-4">
+            <a
+              href="#"
+              className="p-3 rounded-xl bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-300"
+            >
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="p-3 rounded-xl bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-300"
+            >
+              <MessageCircle className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="p-3 rounded-xl bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-300"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} CryptoScamGuide. Educational resource only.</p>
+          <p className="flex items-center gap-1">
+            Made for the crypto community
           </p>
         </div>
       </div>
