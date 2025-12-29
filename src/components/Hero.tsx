@@ -1,6 +1,34 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ChevronDown, ShieldAlert, Gift, ListChecks, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRef, useEffect, useState } from "react";
+
+const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const duration = 1500;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          setCount(target);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, 16);
+      return () => clearInterval(timer);
+    }
+  }, [isInView, target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
+
 const Hero = () => {
   const scrollToScams = () => {
     document.getElementById("scams")?.scrollIntoView({
@@ -94,34 +122,43 @@ const Hero = () => {
           duration: 0.6,
           delay: 0.3
         }}>
-            <Button variant="hero" size="xl" onClick={scrollToScams} className="group">
+            <Button variant="hero" size="xl" onClick={scrollToScams} className="group relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer" />
               <ShieldAlert className="w-5 h-5 transition-transform group-hover:scale-110" />
               Learn to Protect Yourself
             </Button>
           </motion.div>
 
           {/* Trust indicators */}
-          <motion.div initial={{
-          opacity: 0
-        }} animate={{
-          opacity: 1
-        }} transition={{
-          duration: 0.8,
-          delay: 0.5
-        }} className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-2"
+            >
               <ListChecks className="w-4 h-4 text-primary" />
-              <span>30+ Scams Listed</span>
-            </div>
-            <div className="flex items-center gap-2">
+              <span><AnimatedCounter target={30} suffix="+" /> Scams Listed</span>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="flex items-center gap-2"
+            >
               <Sparkles className="w-4 h-4 text-warning" />
               <span>Interactive Guidance</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="flex items-center gap-2"
+            >
               <Gift className="w-4 h-4 text-success" />
               <span>100% Free, No Sign-Ups</span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Scroll indicator */}
           <motion.div initial={{
