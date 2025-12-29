@@ -67,7 +67,7 @@ const Footer = () => {
 
           <p className="text-muted-foreground max-w-md mb-8">
             Protecting the crypto community through education. 
-            Knowledge is your strongest defense.
+            Knowledge is our strongest defense.
           </p>
 
           {/* Share buttons */}
