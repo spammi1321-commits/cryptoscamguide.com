@@ -8,6 +8,21 @@ import { Button } from "@/components/ui/button";
 
 const INITIAL_DISPLAY_COUNT = 12;
 
+// Short labels for filter buttons
+const getShortLabel = (name: string): string => {
+  const labelMap: Record<string, string> = {
+    "Private Key & Seed Phrase": "Key & Seed",
+    "Transaction & Address": "Transaction",
+    "Impersonation & Social": "Social",
+    "Investment & Trading": "Investment",
+    "Smart Contract & DeFi": "DeFi",
+    "Software & Infrastructure": "Software",
+    "NFT-Specific": "NFT",
+    "Centralized Platforms": "Platforms"
+  };
+  return labelMap[name] || name.split(' ')[0];
+};
+
 const ScamsCatalog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedScam, setSelectedScam] = useState<ScamData | null>(null);
@@ -119,7 +134,7 @@ const ScamsCatalog = () => {
                 )}
               >
                 <category.icon className={cn("w-3.5 h-3.5 shrink-0", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
-                <span className="hidden md:inline">{category.name.split(' ')[0]}</span>
+                <span className="hidden md:inline">{getShortLabel(category.name)}</span>
               </button>
             ))}
           </div>
