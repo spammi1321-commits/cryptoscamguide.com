@@ -18,9 +18,9 @@ const getShortLabel = (name: string): string => {
     "Smart Contract & DeFi": "DeFi",
     "Software & Infrastructure": "Software",
     "NFT-Specific": "NFT",
-    "Centralized Platforms": "Platforms"
+    "Centralized Platforms": "Platforms",
   };
-  return labelMap[name] || name.split(' ')[0];
+  return labelMap[name] || name.split(" ")[0];
 };
 
 const ScamsCatalog = () => {
@@ -29,18 +29,6 @@ const ScamsCatalog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  // Keyboard shortcut: "/" to focus search
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
-        e.preventDefault();
-        searchInputRef.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   // 3D tilt effect handler
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,14 +47,16 @@ const ScamsCatalog = () => {
     e.currentTarget.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
   };
 
-  const filteredScams = selectedCategory === "all"
-    ? scamCategories.flatMap(cat => cat.scams)
-    : scamCategories.find(cat => cat.id === selectedCategory)?.scams || [];
+  const filteredScams =
+    selectedCategory === "all"
+      ? scamCategories.flatMap((cat) => cat.scams)
+      : scamCategories.find((cat) => cat.id === selectedCategory)?.scams || [];
 
   const searchedScams = searchQuery
-    ? filteredScams.filter(scam => 
-        scam.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        scam.shortDesc.toLowerCase().includes(searchQuery.toLowerCase())
+    ? filteredScams.filter(
+        (scam) =>
+          scam.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          scam.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()),
       )
     : filteredScams;
 
@@ -77,13 +67,13 @@ const ScamsCatalog = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.05 }
-    }
+      transition: { staggerChildren: 0.05 },
+    },
   };
 
   const cardVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.3 } }
+    visible: { opacity: 1, transition: { duration: 0.3 } },
   };
 
   return (
@@ -147,7 +137,7 @@ const ScamsCatalog = () => {
                 "flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg font-medium text-xs transition-all duration-300",
                 selectedCategory === "all"
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/30"
+                  : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/30",
               )}
             >
               All
@@ -161,10 +151,13 @@ const ScamsCatalog = () => {
                   "flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-lg font-medium text-xs transition-all duration-300",
                   selectedCategory === category.id
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                    : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/30"
+                    : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/30",
                 )}
               >
-                <category.icon className={cn("w-3.5 h-3.5 shrink-0", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
+                <category.icon
+                  className={cn("w-3.5 h-3.5 shrink-0", selectedCategory === category.id ? "" : category.color)}
+                  aria-hidden="true"
+                />
                 <span className="hidden md:inline">{getShortLabel(category.name)}</span>
               </button>
             ))}
@@ -178,7 +171,7 @@ const ScamsCatalog = () => {
                 "flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl font-medium text-xs transition-all duration-300",
                 selectedCategory === "all"
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary",
               )}
             >
               <span className="text-lg">📋</span>
@@ -193,16 +186,18 @@ const ScamsCatalog = () => {
                   "flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl font-medium text-xs transition-all duration-300",
                   selectedCategory === category.id
                     ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                    : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary",
                 )}
               >
-                <category.icon className={cn("w-5 h-5", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
+                <category.icon
+                  className={cn("w-5 h-5", selectedCategory === category.id ? "" : category.color)}
+                  aria-hidden="true"
+                />
                 <span className="text-center leading-tight">{getShortLabel(category.name)}</span>
               </button>
             ))}
           </div>
         </motion.div>
-
 
         {/* Results count */}
         <div className="text-center mb-8">
@@ -222,7 +217,7 @@ const ScamsCatalog = () => {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {displayedScams.map((scam) => {
-              const category = scamCategories.find(cat => cat.id === scam.category);
+              const category = scamCategories.find((cat) => cat.id === scam.category);
               return (
                 <motion.button
                   key={scam.id}
@@ -241,15 +236,21 @@ const ScamsCatalog = () => {
                   <div className="relative z-10">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-3">
-                      <div className={cn("p-2.5 rounded-lg bg-secondary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3", category?.color)}>
+                      <div
+                        className={cn(
+                          "p-2.5 rounded-lg bg-secondary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
+                          category?.color,
+                        )}
+                      >
                         {category && <category.icon className="w-5 h-5" />}
                       </div>
                       <span
                         className={cn(
                           "text-xs font-semibold px-2.5 py-1 rounded-full transition-all",
-                          scam.riskLevel === "Critical" && "bg-alert/30 text-red-300 animate-pulse shadow-[0_0_12px_hsl(0_72%_51%/0.5)]",
+                          scam.riskLevel === "Critical" &&
+                            "bg-alert/30 text-red-300 animate-pulse shadow-[0_0_12px_hsl(0_72%_51%/0.5)]",
                           scam.riskLevel === "High" && "bg-orange-500/30 text-orange-300",
-                          scam.riskLevel === "Medium" && "bg-yellow-500/30 text-yellow-300"
+                          scam.riskLevel === "Medium" && "bg-yellow-500/30 text-yellow-300",
                         )}
                       >
                         {scam.riskLevel}
@@ -260,9 +261,7 @@ const ScamsCatalog = () => {
                     <h3 className="text-lg font-semibold font-display mb-2 group-hover:text-primary transition-colors duration-300">
                       {scam.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-3">
-                      {scam.shortDesc}
-                    </p>
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-3">{scam.shortDesc}</p>
 
                     {/* Category tag */}
                     <div className="flex items-center justify-between">
@@ -289,12 +288,7 @@ const ScamsCatalog = () => {
             transition={{ duration: 0.4, delay: 0.3 }}
             className="flex justify-center mt-10"
           >
-            <Button
-              onClick={() => setShowAll(true)}
-              variant="outline"
-              size="lg"
-              className="gap-2"
-            >
+            <Button onClick={() => setShowAll(true)} variant="outline" size="lg" className="gap-2">
               Show More
               <ChevronDown className="w-4 h-4" />
             </Button>
@@ -309,11 +303,7 @@ const ScamsCatalog = () => {
       </div>
 
       {/* Modal */}
-      <ScamModal
-        isOpen={!!selectedScam}
-        onClose={() => setSelectedScam(null)}
-        scam={selectedScam}
-      />
+      <ScamModal isOpen={!!selectedScam} onClose={() => setSelectedScam(null)} scam={selectedScam} />
     </section>
   );
 };
