@@ -159,11 +159,12 @@ const ScamsCatalog = () => {
             {displayedScams.map((scam) => {
               const category = scamCategories.find(cat => cat.id === scam.category);
               return (
-                <motion.div
+                <motion.button
                   key={scam.id}
                   variants={cardVariants}
                   onClick={() => setSelectedScam(scam)}
-                  className="group relative bg-card rounded-xl border border-border/50 p-5 card-interactive overflow-hidden"
+                  aria-label={`Learn about ${scam.title} scam - ${scam.riskLevel} risk`}
+                  className="group relative bg-card rounded-xl border border-border/50 p-5 card-interactive overflow-hidden text-left"
                 >
                   {/* Glow effect on hover */}
                   <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/5 to-transparent" />
@@ -206,7 +207,7 @@ const ScamsCatalog = () => {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </motion.button>
               );
             })}
           </motion.div>
