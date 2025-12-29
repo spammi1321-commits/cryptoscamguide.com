@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Search } from "lucide-react";
+import { ChevronRight, Search, ChevronDown } from "lucide-react";
 import { scamCategories, type ScamData, type ScamCategory } from "@/data/scams";
 import ScamModal from "./ScamModal";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
+const INITIAL_DISPLAY_COUNT = 12;
 
 const ScamsCatalog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedScam, setSelectedScam] = useState<ScamData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showAll, setShowAll] = useState(false);
 
   const filteredScams = selectedCategory === "all"
     ? scamCategories.flatMap(cat => cat.scams)
@@ -20,6 +24,9 @@ const ScamsCatalog = () => {
         scam.shortDesc.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : filteredScams;
+
+  const displayedScams = showAll ? searchedScams : searchedScams.slice(0, INITIAL_DISPLAY_COUNT);
+  const hasMoreScams = searchedScams.length > INITIAL_DISPLAY_COUNT;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -117,7 +124,7 @@ const ScamsCatalog = () => {
         {/* Results count */}
         <div className="text-center mb-8">
           <span className="text-sm text-muted-foreground">
-            Showing {searchedScams.length} scam{searchedScams.length !== 1 ? "s" : ""}
+            Showing {displayedScams.length} of {searchedScams.length} scam{searchedScams.length !== 1 ? "s" : ""}
           </span>
         </div>
 
@@ -131,7 +138,7 @@ const ScamsCatalog = () => {
             exit="hidden"
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
           >
-            {searchedScams.map((scam) => {
+            {displayedScams.map((scam) => {
               const category = scamCategories.find(cat => cat.id === scam.category);
               return (
                 <motion.div
@@ -186,6 +193,26 @@ const ScamsCatalog = () => {
             })}
           </motion.div>
         </AnimatePresence>
+
+        {/* Show More Button */}
+        {hasMoreScams && !showAll && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="flex justify-center mt-10"
+          >
+            <Button
+              onClick={() => setShowAll(true)}
+              variant="outline"
+              size="lg"
+              className="gap-2"
+            >
+              Show More ({searchedScams.length - INITIAL_DISPLAY_COUNT} more)
+              <ChevronDown className="w-4 h-4" />
+            </Button>
+          </motion.div>
+        )}
 
         {searchedScams.length === 0 && (
           <div className="text-center py-12">
