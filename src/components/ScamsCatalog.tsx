@@ -212,8 +212,8 @@ const ScamsCatalog = () => {
                       </div>
                       <span
                         className={cn(
-                          "text-xs font-semibold px-2.5 py-1 rounded-full",
-                          scam.riskLevel === "Critical" && "bg-alert/30 text-red-300",
+                          "text-xs font-semibold px-2.5 py-1 rounded-full transition-all",
+                          scam.riskLevel === "Critical" && "bg-alert/30 text-red-300 animate-pulse shadow-[0_0_12px_hsl(0_72%_51%/0.5)]",
                           scam.riskLevel === "High" && "bg-orange-500/30 text-orange-300",
                           scam.riskLevel === "Medium" && "bg-yellow-500/30 text-yellow-300"
                         )}

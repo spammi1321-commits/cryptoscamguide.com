@@ -8,9 +8,26 @@ const Hero = () => {
     });
   };
   return <header className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" aria-label="Introduction">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,hsl(210_100%_52%/0.15),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_80%,hsl(0_72%_51%/0.08),transparent_50%)]" />
+      {/* Animated aurora background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div 
+          className="absolute -inset-[100px] opacity-30"
+          animate={{
+            background: [
+              "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
+              "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 30% 70%, hsl(0 72% 51% / 0.3), transparent 50%)",
+              "radial-gradient(ellipse 80% 50% at 80% 50%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 40%, hsl(0 72% 51% / 0.3), transparent 50%)",
+              "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
+            ]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,hsl(210_100%_52%/0.1),transparent_60%)]" />
       
       {/* Grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(hsl(220_20%_15%/0.5)_1px,transparent_1px),linear-gradient(90deg,hsl(220_20%_15%/0.5)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
