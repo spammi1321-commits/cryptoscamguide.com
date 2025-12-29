@@ -109,10 +109,10 @@ const ScamModal = ({ isOpen, onClose, scam }: ScamModalProps) => {
               </div>
 
               {/* Defense strategy */}
-              <div className="pro-tip">
-                <h3 className="text-lg font-semibold font-display mb-4 flex items-center gap-2">
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/20">
-                    <Shield className="w-3.5 h-3.5 text-primary" />
+              <div className="p-4 rounded-xl bg-success/10 border border-success/20">
+                <h3 className="text-lg font-semibold font-display mb-4 flex items-center gap-2 text-success">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-success/20">
+                    <Shield className="w-3.5 h-3.5 text-success" />
                   </span>
                   Defense Strategy
                 </h3>
@@ -125,8 +125,8 @@ const ScamModal = ({ isOpen, onClose, scam }: ScamModalProps) => {
                       transition={{ delay: 0.3 + index * 0.1 }}
                       className="flex items-start gap-3"
                     >
-                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
-                        <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                       </span>
