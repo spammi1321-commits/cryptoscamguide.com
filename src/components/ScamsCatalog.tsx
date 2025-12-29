@@ -108,6 +108,7 @@ const ScamsCatalog = () => {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
+              aria-label={`Filter by ${category.name}`}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300",
                 selectedCategory === category.id
@@ -115,7 +116,7 @@ const ScamsCatalog = () => {
                   : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
               )}
             >
-              <category.icon className={cn("w-4 h-4", selectedCategory === category.id ? "" : category.color)} />
+              <category.icon className={cn("w-4 h-4", selectedCategory === category.id ? "" : category.color)} aria-hidden="true" />
               <span className="hidden sm:inline">{category.name}</span>
             </button>
           ))}
