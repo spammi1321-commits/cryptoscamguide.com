@@ -60,8 +60,8 @@ const Hero = () => {
           duration: 0.6,
           delay: 0.2
         }} className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
-            The definitive guide to identifying and neutralizing crypto scams 
-            before they hit your wallet.
+            Your essential guide to spotting and stopping crypto scams 
+            before they drain your wallet.
           </motion.p>
 
           {/* CTA */}
