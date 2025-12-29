@@ -16,10 +16,6 @@ const features = [{
   hot: "Relies on device security",
   cold: "Immune - isolated environment"
 }, {
-  name: "Recovery if device lost",
-  hot: "Seed phrase (if saved)",
-  cold: "Seed phrase + new device"
-}, {
   name: "Best for",
   hot: "Small amounts, frequent use",
   cold: "Long-term storage, large amounts"
