@@ -30,6 +30,74 @@ export interface ScamCategory {
 
 export const scamCategories: ScamCategory[] = [
   {
+    id: "keys",
+    name: "Private Key & Seed Phrase",
+    icon: KeyRound,
+    color: "text-emerald-400",
+    scams: [
+      {
+        id: 25,
+        title: "Seed Phrase Phishing",
+        shortDesc: "Fake recovery or verification requests asking for your seed.",
+        description: "Fake recovery or verification requests. Scammers try to trick you into revealing your seed phrase through fake security alerts or recovery processes.",
+        howItWorks: [
+          "Scammer sends fake security alert or recovery email",
+          "Directs to convincing phishing page",
+          "Page asks for seed phrase to 'verify' or 'recover'",
+          "Seed phrase is captured and funds drained"
+        ],
+        defense: [
+          "No legitimate service ever asks for your seed phrase",
+          "Never enter seed phrases on any website",
+          "Use hardware wallets for recovery processes",
+          "Verify all communications through official channels"
+        ],
+        riskLevel: "Critical",
+        category: "keys"
+      },
+      {
+        id: 26,
+        title: "Fake Wallet Recovery Services",
+        shortDesc: "Scammers claiming to recover lost or stolen crypto.",
+        description: "Scammers claiming to recover lost funds. They want upfront fees or wallet access, then disappear without recovering anything.",
+        howItWorks: [
+          "Victim posts about lost funds online",
+          "Scammer contacts offering recovery services",
+          "Requests upfront fee or wallet access",
+          "Takes payment and disappears"
+        ],
+        defense: [
+          "Cryptocurrency transactions are irreversible",
+          "Recovery claims for stolen crypto are almost always false",
+          "Upfront fees are a major red flag",
+          "Legitimate recovery only possible with seed phrase"
+        ],
+        riskLevel: "High",
+        category: "keys"
+      },
+      {
+        id: 27,
+        title: "Cloud Backup Seed Theft",
+        shortDesc: "Seeds stolen from insecure cloud storage or backups.",
+        description: "Seeds stolen from insecure backups. Attackers access cloud data to extract unencrypted seed phrases from photos or documents.",
+        howItWorks: [
+          "User stores seed phrase in cloud storage, photos, or notes",
+          "Attacker gains access to cloud account",
+          "Searches for cryptocurrency-related files",
+          "Extracts seed phrase and drains wallet"
+        ],
+        defense: [
+          "Never store seed phrases digitally or in plaintext",
+          "Use offline, physical storage methods",
+          "If digital backup needed, encrypt properly",
+          "Use steel backup solutions for fire/water protection"
+        ],
+        riskLevel: "Critical",
+        category: "keys"
+      }
+    ]
+  },
+  {
     id: "transaction",
     name: "Transaction & Address",
     icon: Repeat,
@@ -546,74 +614,6 @@ export const scamCategories: ScamCategory[] = [
         ],
         riskLevel: "Critical",
         category: "software"
-      }
-    ]
-  },
-  {
-    id: "keys",
-    name: "Private Key & Seed Phrase",
-    icon: KeyRound,
-    color: "text-emerald-400",
-    scams: [
-      {
-        id: 25,
-        title: "Seed Phrase Phishing",
-        shortDesc: "Fake recovery or verification requests asking for your seed.",
-        description: "Fake recovery or verification requests. Scammers try to trick you into revealing your seed phrase through fake security alerts or recovery processes.",
-        howItWorks: [
-          "Scammer sends fake security alert or recovery email",
-          "Directs to convincing phishing page",
-          "Page asks for seed phrase to 'verify' or 'recover'",
-          "Seed phrase is captured and funds drained"
-        ],
-        defense: [
-          "No legitimate service ever asks for your seed phrase",
-          "Never enter seed phrases on any website",
-          "Use hardware wallets for recovery processes",
-          "Verify all communications through official channels"
-        ],
-        riskLevel: "Critical",
-        category: "keys"
-      },
-      {
-        id: 26,
-        title: "Fake Wallet Recovery Services",
-        shortDesc: "Scammers claiming to recover lost or stolen crypto.",
-        description: "Scammers claiming to recover lost funds. They want upfront fees or wallet access, then disappear without recovering anything.",
-        howItWorks: [
-          "Victim posts about lost funds online",
-          "Scammer contacts offering recovery services",
-          "Requests upfront fee or wallet access",
-          "Takes payment and disappears"
-        ],
-        defense: [
-          "Cryptocurrency transactions are irreversible",
-          "Recovery claims for stolen crypto are almost always false",
-          "Upfront fees are a major red flag",
-          "Legitimate recovery only possible with seed phrase"
-        ],
-        riskLevel: "High",
-        category: "keys"
-      },
-      {
-        id: 27,
-        title: "Cloud Backup Seed Theft",
-        shortDesc: "Seeds stolen from insecure cloud storage or backups.",
-        description: "Seeds stolen from insecure backups. Attackers access cloud data to extract unencrypted seed phrases from photos or documents.",
-        howItWorks: [
-          "User stores seed phrase in cloud storage, photos, or notes",
-          "Attacker gains access to cloud account",
-          "Searches for cryptocurrency-related files",
-          "Extracts seed phrase and drains wallet"
-        ],
-        defense: [
-          "Never store seed phrases digitally or in plaintext",
-          "Use offline, physical storage methods",
-          "If digital backup needed, encrypt properly",
-          "Use steel backup solutions for fire/water protection"
-        ],
-        riskLevel: "Critical",
-        category: "keys"
       }
     ]
   },
