@@ -3,6 +3,10 @@ import { ExternalLink, Shield, Cpu, Fingerprint } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import trezorSafe3 from "@/assets/trezor-safe-3.png";
+import trezorSafe5 from "@/assets/trezor-safe-5.png";
+import trezorSafe7 from "@/assets/trezor-safe-7.png";
+
 const trezorProducts = [
   {
     id: "safe-3",
@@ -14,6 +18,7 @@ const trezorProducts = [
     bgColor: "bg-emerald-500/10",
     borderColor: "border-emerald-500/20",
     url: "https://trezor.io/trezor-safe-3",
+    image: trezorSafe3,
   },
   {
     id: "safe-5",
@@ -25,18 +30,20 @@ const trezorProducts = [
     bgColor: "bg-primary/10",
     borderColor: "border-primary/20",
     url: "https://trezor.io/trezor-safe-5",
+    image: trezorSafe5,
     featured: true,
   },
   {
     id: "safe-7",
     name: "Trezor Safe 7",
     tagline: "Ultimate Security",
-    description: "Top-tier protection with biometric authentication and premium build quality.",
+    description: "Top-tier protection with haptic feedback and premium build quality.",
     icon: Fingerprint,
     color: "text-violet-400",
     bgColor: "bg-violet-500/10",
     borderColor: "border-violet-500/20",
     url: "https://trezor.io/trezor-safe-7",
+    image: trezorSafe7,
   },
 ];
 
@@ -88,9 +95,18 @@ const TrezorAffiliate = () => {
                 </span>
               )}
 
+              {/* Product Image */}
+              <div className="flex justify-center mb-4 pt-2">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
               <div className="flex items-center gap-3 mb-3">
-                <div className={cn("p-2.5 rounded-lg", product.bgColor)}>
-                  <product.icon className={cn("w-5 h-5", product.color)} />
+                <div className={cn("p-2 rounded-lg", product.bgColor)}>
+                  <product.icon className={cn("w-4 h-4", product.color)} />
                 </div>
                 <div>
                   <h4 className="font-semibold font-display text-foreground group-hover:text-primary transition-colors">
