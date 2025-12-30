@@ -8,19 +8,19 @@ type WalletType = "hot" | "cold";
 const features = [{
   name: "Private keys location",
   hot: "On internet-connected device",
-  cold: "On offline, secure device"
+  cold: "On a secure offline device"
 }, {
   name: "Vulnerability to hacks",
-  hot: "High - always connected",
-  cold: "Very Low - requires physical confirmation"
+  hot: "High, always connected to internet",
+  cold: "Very low, requires physical access"
 }, {
   name: "Malware protection",
-  hot: "Relies on device security",
-  cold: "Immune - isolated environment"
+  hot: "Only as secure as the device used",
+  cold: "Protected by being offline"
 }, {
   name: "Best for",
-  hot: "Small amounts, frequent use",
-  cold: "Long-term storage, large amounts"
+  hot: "Everyday use with smaller balances",
+  cold: "Saving crypto long-term"
 }];
 
 const HardwareWall = () => {
