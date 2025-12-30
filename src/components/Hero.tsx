@@ -1,6 +1,5 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { ChevronDown, ShieldAlert, Gift, ListChecks, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronDown, Gift, ListChecks, Sparkles } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
 const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
@@ -121,30 +120,12 @@ const Hero = () => {
             before they drain your wallet.
           </motion.p>
 
-          {/* CTA */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6,
-          delay: 0.3
-        }}>
-            <Button variant="hero" size="xl" onClick={scrollToScams} className="group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer" />
-              <ShieldAlert className="w-5 h-5 transition-transform group-hover:scale-110" />
-              Learn to Protect Yourself
-            </Button>
-          </motion.div>
-
           {/* Trust indicators */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
               className="flex items-center gap-2"
             >
               <ListChecks className="w-4 h-4 text-primary" />
@@ -153,7 +134,7 @@ const Hero = () => {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
               className="flex items-center gap-2"
             >
               <Sparkles className="w-4 h-4 text-warning" />
@@ -162,7 +143,7 @@ const Hero = () => {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
               className="flex items-center gap-2"
             >
               <Gift className="w-4 h-4 text-success" />
@@ -170,26 +151,28 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Scroll indicator */}
-          <motion.div initial={{
-          opacity: 0
-        }} animate={{
-          opacity: 1
-        }} transition={{
-          duration: 0.6,
-          delay: 0.8
-        }} className="mt-12 flex justify-center">
-          <motion.div animate={{
-            y: [0, 8, 0]
-          }} transition={{
-            duration: 1.2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }} className="flex flex-col items-center -space-y-3">
+          {/* Scroll indicator - clickable */}
+          <motion.button
+            onClick={scrollToScams}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-12 flex justify-center mx-auto cursor-pointer hover:scale-110 transition-transform"
+            aria-label="Scroll to scam library"
+          >
+            <motion.div 
+              animate={{ y: [0, 8, 0] }} 
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }} 
+              className="flex flex-col items-center -space-y-3"
+            >
               <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
               <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
             </motion.div>
-          </motion.div>
+          </motion.button>
         </motion.div>
       </motion.div>
     </header>;
