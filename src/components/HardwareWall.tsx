@@ -65,8 +65,8 @@ const HardwareWall = () => {
             The <span className="gradient-text">Hardware Wallet</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Software wallets (hot wallets) live on the internet. Scammers live there too.{" "}
-            <span className="text-foreground font-medium">Hardware wallets (cold wallets) keep your keys offline</span>, 
+            Software wallets live on the internet. Scammers live there too.{" "}
+            <span className="text-foreground font-medium">Hardware wallets keep your keys offline</span>, 
             where hackers can't reach them.
           </p>
         </motion.div>
@@ -111,7 +111,7 @@ const HardwareWall = () => {
               >
                 <Wifi className="w-5 h-5" aria-hidden="true" />
               </motion.div>
-              <span>Hot Wallet</span>
+              <span>Software Wallet</span>
             </button>
             <button 
               onClick={() => setActiveType("cold")} 
@@ -126,7 +126,7 @@ const HardwareWall = () => {
               >
                 <HardDrive className="w-5 h-5" aria-hidden="true" />
               </motion.div>
-              <span>Cold Wallet</span>
+              <span>Hardware Wallet</span>
             </button>
           </div>
         </motion.div>
@@ -256,8 +256,8 @@ const HardwareWall = () => {
               <div>
                 <p className="font-semibold font-display mb-1">Pro Tip</p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Use a hot wallet for day-to-day transactions with small amounts. Keep the majority 
-                  of your holdings in cold storage. Never store your seed phrase digitally.
+                  Use a software wallet for day-to-day transactions with small amounts. Keep the majority 
+                  of your holdings in a hardware wallet. Never store your seed phrase digitally.
                 </p>
               </div>
             </div>
