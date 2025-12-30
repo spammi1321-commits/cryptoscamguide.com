@@ -225,7 +225,7 @@ const ScamsCatalog = () => {
                   onClick={() => setSelectedScam(scam)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
-                  aria-label={`Learn about ${scam.title} scam - ${scam.riskLevel} risk`}
+                  aria-label={`Learn about ${scam.title} scam`}
                   className="group relative bg-card rounded-xl border border-border/50 p-5 overflow-hidden text-left transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/5"
                   style={{ transformStyle: "preserve-3d", transition: "transform 0.1s ease-out, box-shadow 0.3s ease" }}
                 >
@@ -235,26 +235,15 @@ const ScamsCatalog = () => {
 
                   <div className="relative z-10">
                     {/* Header */}
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="mb-3">
                       <div
                         className={cn(
-                          "p-2.5 rounded-lg bg-secondary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
+                          "p-2.5 rounded-lg bg-secondary/50 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 inline-block",
                           category?.color,
                         )}
                       >
                         {category && <category.icon className="w-5 h-5" />}
                       </div>
-                      <span
-                        className={cn(
-                          "text-xs font-semibold px-2.5 py-1 rounded-full transition-all",
-                          scam.riskLevel === "Critical" &&
-                            "bg-alert/30 text-red-300 animate-pulse shadow-[0_0_12px_hsl(0_72%_51%/0.5)]",
-                          scam.riskLevel === "High" && "bg-orange-500/30 text-orange-300",
-                          scam.riskLevel === "Medium" && "bg-yellow-500/30 text-yellow-300",
-                        )}
-                      >
-                        {scam.riskLevel}
-                      </span>
                     </div>
 
                     {/* Content */}
