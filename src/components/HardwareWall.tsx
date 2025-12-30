@@ -2,50 +2,29 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HardDrive, Wifi, Shield, AlertTriangle, Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 type WalletType = "hot" | "cold";
 
-const featuresDesktop = [{
-  name: "Private key storage",
-  hot: "Stored on an internet-connected device",
-  cold: "Stored on a secure, offline device"
+const features = [{
+  name: "Private keys location",
+  hot: "On internet-connected device",
+  cold: "On a secure offline device"
 }, {
-  name: "Exposure to online threats",
-  hot: "High, always connected to the internet",
+  name: "Vulnerability to online threats",
+  hot: "High, always connected to internet",
   cold: "Very low, requires physical access"
 }, {
   name: "Malware protection",
-  hot: "Depends on the security of the device",
-  cold: "Protected by offline isolation"
+  hot: "Only as secure as the device used",
+  cold: "Protected by being offline"
 }, {
   name: "Best for",
   hot: "Everyday use with smaller balances",
-  cold: "Long-term crypto storage"
-}];
-
-const featuresMobile = [{
-  name: "Private key storage",
-  hot: "Online device",
-  cold: "Offline device"
-}, {
-  name: "Online threat risk",
-  hot: "High",
-  cold: "Very low"
-}, {
-  name: "Malware exposure",
-  hot: "Device-dependent",
-  cold: "Offline protected"
-}, {
-  name: "Best use case",
-  hot: "Daily use",
-  cold: "Long-term storage"
+  cold: "Saving crypto long-term"
 }];
 
 const HardwareWall = () => {
   const [activeType, setActiveType] = useState<WalletType>("cold");
-  const isMobile = useIsMobile();
-  const features = isMobile ? featuresMobile : featuresDesktop;
   
   const featureVariants = {
     hidden: { opacity: 0, x: activeType === "hot" ? -20 : 20 },
