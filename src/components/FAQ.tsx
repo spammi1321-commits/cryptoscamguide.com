@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     question: "What should I do if I accidentally approved a malicious contract?",
-    answer: "Act immediately: use tools like Revoke.cash or Etherscan's Token Approval Checker to revoke the approval. Move remaining assets to a fresh wallet. In the future, always review what permissions you're granting before signing."
+    answer: "Act immediately: use tools like Etherscan's Token Approval Checker to revoke the approval. Move remaining assets to a fresh wallet. In the future, always review what permissions you're granting before signing."
   },
   {
     question: "Can scammers steal my crypto just by knowing my wallet address?",
