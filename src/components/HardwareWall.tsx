@@ -6,21 +6,21 @@ import { cn } from "@/lib/utils";
 type WalletType = "hot" | "cold";
 
 const features = [{
-  name: "Private keys location",
-  hot: "On internet-connected device",
-  cold: "On a secure offline device"
+  name: "Private key storage",
+  hot: "Stored on an internet-connected device",
+  cold: "Stored on a secure, offline device"
 }, {
-  name: "Vulnerability to online threats",
-  hot: "High, always connected to internet",
+  name: "Exposure to online threats",
+  hot: "High, always connected to the internet",
   cold: "Very low, requires physical access"
 }, {
   name: "Malware protection",
-  hot: "Only as secure as the device used",
-  cold: "Protected by being offline"
+  hot: "Depends on the security of the device",
+  cold: "Protected by offline isolation"
 }, {
   name: "Best for",
   hot: "Everyday use with smaller balances",
-  cold: "Saving crypto long-term"
+  cold: "Long-term crypto storage"
 }];
 
 const HardwareWall = () => {
