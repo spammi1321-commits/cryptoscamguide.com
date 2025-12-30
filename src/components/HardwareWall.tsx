@@ -65,8 +65,8 @@ const HardwareWall = () => {
             The <span className="gradient-text">Hardware Wallet</span>
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Software wallets live on the internet. Scammers live there too.{" "}
-            <span className="text-foreground font-medium">Hardware wallets keep your keys offline</span>, 
+            Software wallets (hot wallets) live on the internet. Scammers live there too.{" "}
+            <span className="text-foreground font-medium">Hardware wallets (cold wallets) keep your keys offline</span>, 
             where hackers can't reach them.
           </p>
         </motion.div>
