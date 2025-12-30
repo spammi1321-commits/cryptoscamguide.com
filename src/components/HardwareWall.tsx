@@ -11,7 +11,7 @@ const features = [{
   cold: "On a secure offline device"
   },
   {
-  name: "Vulnerability to online threats",
+  name: "Vulnerability to online hacks",
   hot: "High — always connected to the internet",
   cold: "Minimal — requires physical access"
   },
