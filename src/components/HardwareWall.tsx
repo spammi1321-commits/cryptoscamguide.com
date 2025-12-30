@@ -18,9 +18,9 @@ const features = [{
   hot: "Only as secure as the device used",
   cold: "Protected by being offline"
 }, {
-  name: "Best for",
-  hot: "Everyday use with smaller balances",
-  cold: "Saving crypto long-term"
+  name: "Designed for long-term storage",
+  hot: "No, suitable only for smaller balances",
+  cold: "Yes, ideal for saving crypto long-term"
 }];
 
 const HardwareWall = () => {
