@@ -1,10 +1,153 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Search, ChevronDown, AlertTriangle } from "lucide-react";
-import { scamCategories, type ScamData, type ScamCategory } from "@/data/scams";
+import { ChevronRight, Search, ChevronDown, AlertTriangle, Clock, Key, Gift, ChevronUp } from "lucide-react";
+import { scamCategories, type ScamData } from "@/data/scams";
 import ScamModal from "./ScamModal";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+
+interface GoldenRule {
+  id: string;
+  icon: typeof Clock;
+  title: string;
+  shortDesc: string;
+  details: string[];
+  color: string;
+  bgColor: string;
+}
+
+const goldenRules: GoldenRule[] = [
+  {
+    id: "urgency",
+    icon: Clock,
+    title: "Urgency = Scam",
+    shortDesc: "If someone is pressuring you to act fast, it's always a scam.",
+    details: [
+      "\"Act now or lose your funds forever!\"",
+      "\"This offer expires in 10 minutes!\"",
+      "\"Your account will be suspended unless you verify immediately!\"",
+      "Legitimate services never pressure you with artificial deadlines."
+    ],
+    color: "text-red-500",
+    bgColor: "bg-red-500/10 border-red-500/30 hover:border-red-500/50"
+  },
+  {
+    id: "seedphrase",
+    icon: Key,
+    title: "Seed Phrase Requests = Scam",
+    shortDesc: "No person, website, or app should ever ask for your seed phrase.",
+    details: [
+      "\"Enter your 12 words to validate your wallet\"",
+      "\"Sync your wallet by providing your recovery phrase\"",
+      "\"Our support team needs your seed phrase to help you\"",
+      "Your seed phrase is YOUR master key — never share it with anyone."
+    ],
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10 border-orange-500/30 hover:border-orange-500/50"
+  },
+  {
+    id: "toogood",
+    icon: Gift,
+    title: "Too Good to Be True = Scam",
+    shortDesc: "Massive profits, free giveaways, guaranteed returns — always a trap.",
+    details: [
+      "\"Send 1 ETH, get 2 ETH back!\"",
+      "\"Guaranteed 100% daily returns!\"",
+      "\"Elon Musk is giving away free Bitcoin!\"",
+      "If it sounds too good to be true, it definitely is."
+    ],
+    color: "text-yellow-500",
+    bgColor: "bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50"
+  }
+];
+
+// Golden Rule Card Component
+const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const IconComponent = rule.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+    >
+      <motion.button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={cn(
+          "w-full text-left p-5 rounded-xl border transition-all duration-300",
+          rule.bgColor,
+          isExpanded && "ring-2 ring-offset-2 ring-offset-background",
+          isExpanded && rule.id === "urgency" && "ring-red-500/50",
+          isExpanded && rule.id === "seedphrase" && "ring-orange-500/50",
+          isExpanded && rule.id === "toogood" && "ring-yellow-500/50"
+        )}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div className="flex items-start gap-4">
+          <motion.div
+            className={cn("p-2.5 rounded-lg", rule.bgColor)}
+            animate={isExpanded ? { rotate: [0, -10, 10, 0] } : {}}
+            transition={{ duration: 0.5 }}
+          >
+            <IconComponent className={cn("w-5 h-5", rule.color)} />
+          </motion.div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <h4 className={cn("font-semibold font-display", rule.color)}>{rule.title}</h4>
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronUp className={cn("w-4 h-4 flex-shrink-0", rule.color)} />
+              </motion.div>
+            </div>
+            <p className="text-muted-foreground text-sm leading-relaxed">{rule.shortDesc}</p>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="mt-4 pt-4 border-t border-border/50">
+                <p className="text-xs font-medium text-muted-foreground mb-3">Common phrases scammers use:</p>
+                <ul className="space-y-2">
+                  {rule.details.map((detail, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className={cn(
+                        "text-sm flex items-start gap-2",
+                        i === rule.details.length - 1 ? "text-foreground font-medium mt-3" : "text-muted-foreground italic"
+                      )}
+                    >
+                      {i === rule.details.length - 1 ? (
+                        <span className={cn("mt-0.5", rule.color)}>→</span>
+                      ) : (
+                        <span className={cn("mt-0.5", rule.color)}>"</span>
+                      )}
+                      {detail}
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
+    </motion.div>
+  );
+};
 
 const INITIAL_DISPLAY_COUNT = 12;
 
@@ -290,28 +433,28 @@ const ScamsCatalog = () => {
           </div>
         )}
 
-        {/* Pro Tip */}
+        {/* Golden Rules */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="max-w-2xl mx-auto mt-12"
+          className="mt-16"
         >
-          <div className="pro-tip animate-pulse-glow border-alert/30 bg-alert/5">
-            <div className="flex items-start gap-4">
-              <div className="p-2 rounded-lg bg-alert/20">
-                <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
-              </div>
-              <div>
-                <p className="font-semibold font-display mb-2 text-alert">Golden Rules</p>
-                <ul className="text-muted-foreground text-sm leading-relaxed space-y-1.5">
-                  <li>• <strong className="text-foreground">Urgency = Scam.</strong> If someone is pressuring you to act fast, it's always a scam.</li>
-                  <li>• <strong className="text-foreground">Seed phrase requests = Scam.</strong> No person, website, or app should ever ask for your seed phrase.</li>
-                  <li>• <strong className="text-foreground">Too good to be true = Scam.</strong> Massive profits, free giveaways, guaranteed returns — always a trap.</li>
-                </ul>
-              </div>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-alert/10 border border-alert/20 mb-4">
+              <AlertTriangle className="w-4 h-4 text-alert" />
+              <span className="text-sm font-medium text-alert">Remember These</span>
             </div>
+            <h3 className="text-2xl md:text-3xl font-bold font-display">
+              The <span className="text-alert">Golden Rules</span>
+            </h3>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            {goldenRules.map((rule, index) => (
+              <GoldenRuleCard key={rule.id} rule={rule} index={index} />
+            ))}
           </div>
         </motion.div>
       </div>
