@@ -277,7 +277,7 @@ const ScamsCatalog = () => {
             transition={{ duration: 0.4, delay: 0.3 }}
             className="flex justify-center mt-10"
           >
-            <Button onClick={() => setShowAll(true)} variant="outline" size="lg" className="gap-2 text-sm">
+            <Button onClick={() => setShowAll(true)} variant="outline" className="gap-2 text-sm px-8 py-6">
               Show More
               <ChevronDown className="w-4 h-4" />
             </Button>
