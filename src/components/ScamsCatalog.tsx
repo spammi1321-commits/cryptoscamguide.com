@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Search, ChevronDown } from "lucide-react";
+import { ChevronRight, Search, ChevronDown, AlertTriangle } from "lucide-react";
 import { scamCategories, type ScamData, type ScamCategory } from "@/data/scams";
 import ScamModal from "./ScamModal";
 import { cn } from "@/lib/utils";
@@ -289,6 +289,31 @@ const ScamsCatalog = () => {
             <p className="text-muted-foreground">No scams found matching your search.</p>
           </div>
         )}
+
+        {/* Pro Tip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="max-w-2xl mx-auto mt-12"
+        >
+          <div className="pro-tip animate-pulse-glow border-alert/30 bg-alert/5">
+            <div className="flex items-start gap-4">
+              <div className="p-2 rounded-lg bg-alert/20">
+                <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="font-semibold font-display mb-2 text-alert">Golden Rules</p>
+                <ul className="text-muted-foreground text-sm leading-relaxed space-y-1.5">
+                  <li>• <strong className="text-foreground">Urgency = Scam.</strong> If someone is pressuring you to act fast, it's always a scam.</li>
+                  <li>• <strong className="text-foreground">Seed phrase requests = Scam.</strong> No person, website, or app should ever ask for your seed phrase.</li>
+                  <li>• <strong className="text-foreground">Too good to be true = Scam.</strong> Massive profits, free giveaways, guaranteed returns — always a trap.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Modal */}
