@@ -21,44 +21,44 @@ const goldenRules: GoldenRule[] = [
     id: "urgency",
     icon: Clock,
     title: "Urgency = Scam",
-    shortDesc: "If someone is pressuring you to act fast, it's always a scam.",
+    shortDesc: "Pressure to act fast is a clear sign of a scam.",
     details: [
-      "\"Act now or lose your funds forever!\"",
-      "\"This offer expires in 10 minutes!\"",
-      "\"Your account will be suspended unless you verify immediately!\"",
-      "Legitimate services never pressure you with artificial deadlines."
+      '"Act now or lose your funds forever!"',
+      '"This offer expires in 10 minutes!"',
+      '"Your account will be suspended unless you verify immediately!"',
+      "Legitimate services never pressure you with artificial deadlines.",
     ],
     color: "text-red-500",
-    bgColor: "bg-red-500/10 border-red-500/30 hover:border-red-500/50"
+    bgColor: "bg-red-500/10 border-red-500/30 hover:border-red-500/50",
   },
   {
     id: "seedphrase",
     icon: Key,
     title: "Seed Phrase Requests = Scam",
-    shortDesc: "No person, website, or app should ever ask for your seed phrase.",
+    shortDesc: "Any request for your seed phrase is always a scam.",
     details: [
-      "\"Enter your 12 words to validate your wallet\"",
-      "\"Sync your wallet by providing your recovery phrase\"",
-      "\"Our support team needs your seed phrase to help you\"",
-      "Your seed phrase is YOUR master key — never share it with anyone."
+      '"Enter your 12 words to validate your wallet"',
+      '"Sync your wallet by providing your recovery phrase"',
+      '"Our support team needs your seed phrase to help you"',
+      "Your seed phrase is YOUR master key — never share it with anyone.",
     ],
     color: "text-orange-500",
-    bgColor: "bg-orange-500/10 border-orange-500/30 hover:border-orange-500/50"
+    bgColor: "bg-orange-500/10 border-orange-500/30 hover:border-orange-500/50",
   },
   {
     id: "toogood",
     icon: Gift,
     title: "Too Good to Be True = Scam",
-    shortDesc: "Massive profits, free giveaways, guaranteed returns — always a trap.",
+    shortDesc: "Offers promising huge gains or free money are scams.",
     details: [
-      "\"Send 1 ETH, get 2 ETH back!\"",
-      "\"Guaranteed 100% daily returns!\"",
-      "\"Elon Musk is giving away free Bitcoin!\"",
-      "If it sounds too good to be true, it definitely is."
+      '"Send 1 ETH, get 2 ETH back!"',
+      '"Guaranteed 100% daily returns!"',
+      '"Elon Musk is giving away free Bitcoin!"',
+      "If it sounds too good to be true, it definitely is.",
     ],
     color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50"
-  }
+    bgColor: "bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50",
+  },
 ];
 
 // Golden Rule Card Component
@@ -82,7 +82,7 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
           isExpanded && "ring-2 ring-offset-2 ring-offset-background",
           isExpanded && rule.id === "urgency" && "ring-red-500/50",
           isExpanded && rule.id === "seedphrase" && "ring-orange-500/50",
-          isExpanded && rule.id === "toogood" && "ring-yellow-500/50"
+          isExpanded && rule.id === "toogood" && "ring-yellow-500/50",
         )}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -98,10 +98,7 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-1">
               <h4 className={cn("font-semibold font-display", rule.color)}>{rule.title}</h4>
-              <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
+              <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
                 <ChevronUp className={cn("w-4 h-4 flex-shrink-0", rule.color)} />
               </motion.div>
             </div>
@@ -129,7 +126,9 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
                       transition={{ delay: i * 0.1 }}
                       className={cn(
                         "text-sm flex items-start gap-2",
-                        i === rule.details.length - 1 ? "text-foreground font-medium mt-3" : "text-muted-foreground italic"
+                        i === rule.details.length - 1
+                          ? "text-foreground font-medium mt-3"
+                          : "text-muted-foreground italic",
                       )}
                     >
                       {i === rule.details.length - 1 ? (
