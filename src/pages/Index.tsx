@@ -7,6 +7,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 
 // Lazy load below-the-fold components
+const CryptoScamsOverview = lazy(() => import("@/components/CryptoScamsOverview"));
 const ScamsCatalog = lazy(() => import("@/components/ScamsCatalog"));
 const HardwareWall = lazy(() => import("@/components/HardwareWall"));
 const SecurityAudit = lazy(() => import("@/components/SecurityAudit"));
@@ -39,6 +40,7 @@ const Index = () => {
           <article>
             <Hero />
             <Suspense fallback={<SectionLoader />}>
+              <CryptoScamsOverview />
               <ScamsCatalog />
             </Suspense>
           </article>
