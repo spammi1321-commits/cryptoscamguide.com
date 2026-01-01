@@ -36,7 +36,7 @@ const CryptoScamsOverview = () => {
           className="max-w-4xl mx-auto text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            What Are Crypto Scams?
+            What Are <span className="text-primary">Crypto Scams</span>?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             Crypto scams are fraudulent schemes designed to steal your cryptocurrency, 
