@@ -36,7 +36,7 @@ const CryptoScamsOverview = () => {
           className="max-w-4xl mx-auto text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            What Are <span className="text-primary">Crypto Scams</span>?
+            What Are <span className="text-destructive">Crypto Scams</span>?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             Crypto scams are fraudulent schemes designed to steal your cryptocurrency, 
@@ -69,10 +69,10 @@ const CryptoScamsOverview = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="flex flex-col items-center text-center p-4 rounded-xl bg-background/50 border border-border/30 hover:border-primary/30 transition-colors"
+                  className="flex flex-col items-center text-center p-4 rounded-xl bg-background/50 border border-border/30 hover:border-destructive/30 transition-colors"
                 >
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-                    <point.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
+                    <point.icon className="w-6 h-6 text-destructive" />
                   </div>
                   <h4 className="font-semibold mb-2">{point.title}</h4>
                   <p className="text-sm text-muted-foreground">{point.description}</p>
