@@ -21,7 +21,7 @@ const goldenRules: GoldenRule[] = [
     id: "urgency",
     icon: Clock,
     title: "Urgency and Pressure = Scam",
-    shortDesc: "Pressure to act fast is a clear sign of a scam.",
+    shortDesc: "Pressure to act fast is almost always a sign of a scam",
     details: [
       '"Act now or lose your funds forever!"',
       '"This offer expires in 10 minutes!"',
