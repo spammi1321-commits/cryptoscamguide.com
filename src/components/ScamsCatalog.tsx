@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Search, ChevronDown, AlertTriangle, Clock, Key, Gift, ChevronUp } from "lucide-react";
+import { ChevronRight, Search, ChevronDown, AlertTriangle, Clock, Key, Gift } from "lucide-react";
 import { scamCategories, type ScamData } from "@/data/scams";
 import ScamModal from "./ScamModal";
 import { cn } from "@/lib/utils";
@@ -99,7 +99,7 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
             <div className="flex items-center justify-between gap-2 mb-1">
               <h4 className={cn("font-semibold font-display", rule.color)}>{rule.title}</h4>
               <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                <ChevronUp className={cn("w-4 h-4 flex-shrink-0", rule.color)} />
+                <ChevronDown className={cn("w-4 h-4 flex-shrink-0", rule.color)} />
               </motion.div>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">{rule.shortDesc}</p>
