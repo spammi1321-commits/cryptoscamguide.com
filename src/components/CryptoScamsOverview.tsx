@@ -41,8 +41,8 @@ const CryptoScamsOverview = () => {
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             Crypto scams are fraudulent schemes designed to steal your cryptocurrency, 
             private keys, or personal information. Scammers exploit the decentralized 
-            and irreversible nature of blockchain transactions—once your crypto is gone, 
-            it's nearly impossible to recover.
+            and irreversible nature of blockchain transactions. Once your crypto is gone, 
+            it's basically impossible to recover.
           </p>
         </motion.div>
 
