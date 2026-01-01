@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "What Are Scams?", href: "#overview" },
+  { label: "What Are Crypto Scams?", href: "#overview" },
   { label: "Scam Library", href: "#scams" },
   { label: "Hardware Defense", href: "#hardware" },
   { label: "Security Audit", href: "#audit" },
