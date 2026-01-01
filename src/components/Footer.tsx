@@ -13,7 +13,7 @@ const XIcon = ({ className }: { className?: string }) => (
 const Footer = () => {
   const [copied, setCopied] = useState(false);
   const shareUrl = "https://www.cryptoscamguide.com";
-  const shareTitle = "Free Crypto Scam Guide - Protect Your Crypto";
+  const shareTitle = "Free Crypto Scam Guide | Protect Your Crypto and Yourself";
   const shareText = "Stay safe from 30+ crypto scams. Check out this free guide!";
 
   const handleCopyLink = async () => {
