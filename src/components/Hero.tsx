@@ -39,8 +39,8 @@ const Hero = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const scrollToScams = () => {
-    document.getElementById("scams")?.scrollIntoView({
+  const scrollToOverview = () => {
+    document.getElementById("overview")?.scrollIntoView({
       behavior: "smooth"
     });
   };
@@ -153,12 +153,12 @@ const Hero = () => {
 
           {/* Scroll indicator - clickable */}
           <motion.button
-            onClick={scrollToScams}
+            onClick={scrollToOverview}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mt-12 flex justify-center mx-auto cursor-pointer hover:scale-110 transition-transform"
-            aria-label="Scroll to scam library"
+            aria-label="Scroll to crypto scams overview"
           >
             <motion.div 
               animate={{ y: [0, 8, 0] }} 
