@@ -366,7 +366,9 @@ const CryptoScamsOverview = () => {
 
         {/* Quiz Grid */}
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
-          <ScamQuiz />
+          <div className="md:col-span-2 flex justify-center">
+            <ScamQuiz />
+          </div>
         </div>
 
         <motion.p
