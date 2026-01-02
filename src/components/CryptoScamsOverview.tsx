@@ -370,17 +370,6 @@ const CryptoScamsOverview = () => {
             <ScamQuiz />
           </div>
         </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center text-muted-foreground mt-8 max-w-2xl mx-auto"
-        >
-          Below you'll find a comprehensive catalog of 30+ scam types, organized by category, with real-world examples
-          and proven defense strategies.
-        </motion.p>
       </div>
     </section>
   );
