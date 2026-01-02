@@ -99,52 +99,6 @@ const quizQuestions = [
   },
 ];
 
-// Timeline data
-const scamTimeline = [
-  {
-    step: 1,
-    title: "Initial Contact",
-    description: "Scammer makes first contact via social media, email, or dating apps",
-    icon: MessageSquare,
-    color: "bg-blue-500",
-  },
-  {
-    step: 2,
-    title: "Trust Building",
-    description: "They build rapport, often over days or weeks, seeming helpful and friendly",
-    icon: Users,
-    color: "bg-green-500",
-  },
-  {
-    step: 3,
-    title: "The Hook",
-    description: "A 'unique opportunity' is presented - investment, giveaway, or urgent problem",
-    icon: Eye,
-    color: "bg-yellow-500",
-  },
-  {
-    step: 4,
-    title: "Pressure & Urgency",
-    description: "Artificial time limits and emotional manipulation push for quick action",
-    icon: Clock,
-    color: "bg-orange-500",
-  },
-  {
-    step: 5,
-    title: "The Ask",
-    description: "Request for crypto transfer, seed phrase, or wallet connection",
-    icon: Wallet,
-    color: "bg-red-500",
-  },
-  {
-    step: 6,
-    title: "Disappearance",
-    description: "Once funds are sent, the scammer vanishes with your assets",
-    icon: Ban,
-    color: "bg-destructive",
-  },
-];
-
 // Expandable Key Point Card
 const KeyPointCard = ({ point, index }: { point: (typeof keyPoints)[0]; index: number }) => {
   const [isExpanded, setIsExpanded] = useState(false);
