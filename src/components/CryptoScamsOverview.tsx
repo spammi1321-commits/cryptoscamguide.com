@@ -212,7 +212,7 @@ const ScamQuiz = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8"
+      className="max-w-3xl w-full"
     >
       <div className="flex items-center justify-center gap-2 mb-6">
         <Zap className="w-5 h-5 text-primary" />
