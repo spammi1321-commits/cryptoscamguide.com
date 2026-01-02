@@ -20,84 +20,6 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-// Animated counter hook
-const useCountUp = (end: number, duration: number = 2000, start: number = 0) => {
-  const [count, setCount] = useState(start);
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 },
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let startTime: number;
-    let animationFrame: number;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(start + (end - start) * easeOutQuart));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isVisible, end, duration, start]);
-
-  return { count, ref };
-};
-
-// Statistics data
-const statistics = [
-  {
-    value: 6.0,
-    suffix: "B+",
-    prefix: "$",
-    label: "Lost to crypto scams in 2025",
-    icon: DollarSign,
-    color: "text-red-500",
-  },
-  {
-    value: 300,
-    suffix: "%",
-    prefix: "",
-    label: "Increase in scams in 2025",
-    icon: TrendingUp,
-    color: "text-orange-500",
-  },
-  {
-    value: 100,
-    suffix: "K+",
-    prefix: "",
-    label: "Victims reported in 2025",
-    icon: Users,
-    color: "text-yellow-500",
-  },
-];
-
 // Key points with expanded details
 const keyPoints = [
   {
@@ -519,48 +441,6 @@ const CryptoScamsOverview = () => {
             information. Scammers exploit the decentralized and irreversible nature of blockchain transactions. Once
             your crypto is gone, it's basically impossible to recover.
           </p>
-        </motion.div>
-
-        {/* Statistics counters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
-        >
-          <div
-            ref={stat1.ref}
-            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center"
-          >
-            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-3">
-              <DollarSign className="w-6 h-6 text-red-500" />
-            </div>
-            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">${stat1.count / 10}B</div>
-            <p className="text-sm text-muted-foreground">Lost to crypto scams in 2025</p>
-          </div>
-
-          <div
-            ref={stat2.ref}
-            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center"
-          >
-            <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-3">
-              <TrendingUp className="w-6 h-6 text-orange-500" />
-            </div>
-            <div className="text-3xl md:text-4xl font-bold text-orange-500 mb-1">{stat2.count}%</div>
-            <p className="text-sm text-muted-foreground">Increase in scams since 2024</p>
-          </div>
-
-          <div
-            ref={stat3.ref}
-            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center"
-          >
-            <div className="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center mx-auto mb-3">
-              <Users className="w-6 h-6 text-yellow-500" />
-            </div>
-            <div className="text-3xl md:text-4xl font-bold text-yellow-500 mb-1">{stat3.count}K+</div>
-            <p className="text-sm text-muted-foreground">Victims reported in 2025</p>
-          </div>
         </motion.div>
 
         {/* Scammer's Playbook - Expandable cards */}
