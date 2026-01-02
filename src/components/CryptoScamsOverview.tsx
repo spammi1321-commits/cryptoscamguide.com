@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  AlertTriangle, 
-  Target, 
-  DollarSign, 
-  Shield, 
-  ChevronDown, 
-  Check, 
+import {
+  AlertTriangle,
+  Target,
+  DollarSign,
+  Shield,
+  ChevronDown,
+  Check,
   X,
   TrendingUp,
   Users,
@@ -15,88 +15,10 @@ import {
   Eye,
   MessageSquare,
   Wallet,
-  Ban
+  Ban,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-
-// Animated counter hook
-const useCountUp = (end: number, duration: number = 2000, start: number = 0) => {
-  const [count, setCount] = useState(start);
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let startTime: number;
-    let animationFrame: number;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(start + (end - start) * easeOutQuart));
-
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isVisible, end, duration, start]);
-
-  return { count, ref };
-};
-
-// Statistics data
-const statistics = [
-  {
-    value: 5.6,
-    suffix: "B",
-    prefix: "$",
-    label: "Lost to crypto scams in 2023",
-    icon: DollarSign,
-    color: "text-red-500"
-  },
-  {
-    value: 300,
-    suffix: "%",
-    prefix: "",
-    label: "Increase in scams since 2020",
-    icon: TrendingUp,
-    color: "text-orange-500"
-  },
-  {
-    value: 46,
-    suffix: "K+",
-    prefix: "",
-    label: "Victims reported in 2023",
-    icon: Users,
-    color: "text-yellow-500"
-  }
-];
 
 // Key points with expanded details
 const keyPoints = [
@@ -108,8 +30,8 @@ const keyPoints = [
       "Cloned websites that look identical to legitimate exchanges",
       "Fake social media profiles impersonating celebrities",
       "Fraudulent apps in official app stores",
-      "Phishing emails with convincing branding"
-    ]
+      "Phishing emails with convincing branding",
+    ],
   },
   {
     icon: Target,
@@ -119,8 +41,8 @@ const keyPoints = [
       "FOMO (Fear of Missing Out) on 'guaranteed' gains",
       "Panic-inducing fake security alerts",
       "Romance and trust-building over weeks/months",
-      "Authority impersonation (fake support agents)"
-    ]
+      "Authority impersonation (fake support agents)",
+    ],
   },
   {
     icon: DollarSign,
@@ -130,8 +52,8 @@ const keyPoints = [
       "Seed phrase harvesting through fake wallet apps",
       "Approval scams draining wallet permissions",
       "Rug pulls on fake token projects",
-      "Direct theft through malware and keyloggers"
-    ]
+      "Direct theft through malware and keyloggers",
+    ],
   },
   {
     icon: Shield,
@@ -141,9 +63,9 @@ const keyPoints = [
       "Always verify URLs and sender identities",
       "Never share your seed phrase with anyone",
       "Use hardware wallets for large holdings",
-      "Research projects thoroughly before investing"
-    ]
-  }
+      "Research projects thoroughly before investing",
+    ],
+  },
 ];
 
 // Quiz data
@@ -152,26 +74,29 @@ const quizQuestions = [
     id: 1,
     scenario: "You receive a DM from 'Elon Musk' offering to double your Bitcoin if you send 0.5 BTC first.",
     isScam: true,
-    explanation: "Celebrity giveaway scams are extremely common. No legitimate person will ever ask you to send crypto to receive more back."
+    explanation:
+      "Celebrity giveaway scams are extremely common. No legitimate person will ever ask you to send crypto to receive more back.",
   },
   {
     id: 2,
     scenario: "Your bank's official app sends a notification about a new security update and asks you to log in.",
     isScam: false,
-    explanation: "Legitimate apps can send notifications. However, always open the app directly rather than clicking links in notifications."
+    explanation:
+      "Legitimate apps can send notifications. However, always open the app directly rather than clicking links in notifications.",
   },
   {
     id: 3,
     scenario: "A 'support agent' from your exchange asks for your seed phrase to verify your account.",
     isScam: true,
-    explanation: "No legitimate support will EVER ask for your seed phrase. This is the #1 rule of crypto security."
+    explanation: "No legitimate support will EVER ask for your seed phrase. This is the #1 rule of crypto security.",
   },
   {
     id: 4,
     scenario: "A new token promises 1000% APY with 'zero risk' and celebrity endorsements on their website.",
     isScam: true,
-    explanation: "No investment is 'zero risk' and extremely high APY promises are a major red flag. Celebrity endorsements are often fake."
-  }
+    explanation:
+      "No investment is 'zero risk' and extremely high APY promises are a major red flag. Celebrity endorsements are often fake.",
+  },
 ];
 
 // Timeline data
@@ -181,47 +106,47 @@ const scamTimeline = [
     title: "Initial Contact",
     description: "Scammer makes first contact via social media, email, or dating apps",
     icon: MessageSquare,
-    color: "bg-blue-500"
+    color: "bg-blue-500",
   },
   {
     step: 2,
     title: "Trust Building",
     description: "They build rapport, often over days or weeks, seeming helpful and friendly",
     icon: Users,
-    color: "bg-green-500"
+    color: "bg-green-500",
   },
   {
     step: 3,
     title: "The Hook",
     description: "A 'unique opportunity' is presented - investment, giveaway, or urgent problem",
     icon: Eye,
-    color: "bg-yellow-500"
+    color: "bg-yellow-500",
   },
   {
     step: 4,
     title: "Pressure & Urgency",
     description: "Artificial time limits and emotional manipulation push for quick action",
     icon: Clock,
-    color: "bg-orange-500"
+    color: "bg-orange-500",
   },
   {
     step: 5,
     title: "The Ask",
     description: "Request for crypto transfer, seed phrase, or wallet connection",
     icon: Wallet,
-    color: "bg-red-500"
+    color: "bg-red-500",
   },
   {
     step: 6,
     title: "Disappearance",
     description: "Once funds are sent, the scammer vanishes with your assets",
     icon: Ban,
-    color: "bg-destructive"
-  }
+    color: "bg-destructive",
+  },
 ];
 
 // Expandable Key Point Card
-const KeyPointCard = ({ point, index }: { point: typeof keyPoints[0]; index: number }) => {
+const KeyPointCard = ({ point, index }: { point: (typeof keyPoints)[0]; index: number }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -235,9 +160,9 @@ const KeyPointCard = ({ point, index }: { point: typeof keyPoints[0]; index: num
         onClick={() => setIsExpanded(!isExpanded)}
         className={cn(
           "w-full flex flex-col items-center text-center p-4 rounded-xl bg-background/50 border transition-all duration-300",
-          isExpanded 
-            ? "border-destructive/50 ring-2 ring-destructive/20 ring-offset-2 ring-offset-background" 
-            : "border-border/30 hover:border-destructive/30"
+          isExpanded
+            ? "border-destructive/50 ring-2 ring-destructive/20 ring-offset-2 ring-offset-background"
+            : "border-border/30 hover:border-destructive/30",
         )}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -253,10 +178,7 @@ const KeyPointCard = ({ point, index }: { point: typeof keyPoints[0]; index: num
         </div>
         <div className="flex items-center gap-2 mb-2">
           <h4 className="font-semibold">{point.title}</h4>
-          <motion.div
-            animate={{ rotate: isExpanded ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
             <ChevronDown className="w-4 h-4 text-muted-foreground" />
           </motion.div>
         </div>
@@ -305,13 +227,13 @@ const ScamQuiz = () => {
     setSelectedAnswer(answer);
     setShowResult(true);
     if (answer === quizQuestions[currentQuestion].isScam) {
-      setScore(prev => prev + 1);
+      setScore((prev) => prev + 1);
     }
   };
 
   const nextQuestion = () => {
     if (currentQuestion < quizQuestions.length - 1) {
-      setCurrentQuestion(prev => prev + 1);
+      setCurrentQuestion((prev) => prev + 1);
       setSelectedAnswer(null);
       setShowResult(false);
     } else {
@@ -351,7 +273,7 @@ const ScamQuiz = () => {
                 key={i}
                 className={cn(
                   "w-2 h-2 rounded-full transition-colors",
-                  i === currentQuestion ? "bg-primary" : i < currentQuestion ? "bg-primary/50" : "bg-muted"
+                  i === currentQuestion ? "bg-primary" : i < currentQuestion ? "bg-primary/50" : "bg-muted",
                 )}
               />
             ))}
@@ -364,11 +286,7 @@ const ScamQuiz = () => {
 
           {!showResult ? (
             <div className="flex gap-4 justify-center">
-              <Button
-                onClick={() => handleAnswer(true)}
-                variant="destructive"
-                className="gap-2"
-              >
+              <Button onClick={() => handleAnswer(true)} variant="destructive" className="gap-2">
                 <AlertTriangle className="w-4 h-4" />
                 This is a SCAM
               </Button>
@@ -382,19 +300,15 @@ const ScamQuiz = () => {
               </Button>
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="space-y-4"
-            >
-              <div className={cn(
-                "flex items-center justify-center gap-2 p-3 rounded-lg",
-                isCorrect ? "bg-green-500/10 text-green-500" : "bg-destructive/10 text-destructive"
-              )}>
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
+              <div
+                className={cn(
+                  "flex items-center justify-center gap-2 p-3 rounded-lg",
+                  isCorrect ? "bg-green-500/10 text-green-500" : "bg-destructive/10 text-destructive",
+                )}
+              >
                 {isCorrect ? <Check className="w-5 h-5" /> : <X className="w-5 h-5" />}
-                <span className="font-medium">
-                  {isCorrect ? "Correct!" : "Wrong!"}
-                </span>
+                <span className="font-medium">{isCorrect ? "Correct!" : "Wrong!"}</span>
               </div>
               <p className="text-sm text-muted-foreground text-center">{question.explanation}</p>
               <div className="flex justify-center">
@@ -411,12 +325,14 @@ const ScamQuiz = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center space-y-4"
         >
-          <div className="text-6xl font-bold text-primary">{score}/{quizQuestions.length}</div>
+          <div className="text-6xl font-bold text-primary">
+            {score}/{quizQuestions.length}
+          </div>
           <p className="text-lg">
-            {score === quizQuestions.length 
-              ? "Perfect! You're scam-proof! 🎉" 
-              : score >= quizQuestions.length / 2 
-                ? "Good job! Keep learning to stay safe." 
+            {score === quizQuestions.length
+              ? "Perfect! You're scam-proof! 🎉"
+              : score >= quizQuestions.length / 2
+                ? "Good job! Keep learning to stay safe."
                 : "Time to study up on scam tactics!"}
           </p>
           <Button onClick={resetQuiz} variant="outline">
@@ -455,10 +371,12 @@ const ScamTimeline = () => {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="flex gap-4 items-start"
             >
-              <div className={cn(
-                "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 relative z-10",
-                step.color
-              )}>
+              <div
+                className={cn(
+                  "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 relative z-10",
+                  step.color,
+                )}
+              >
                 <step.icon className="w-5 h-5 text-white" />
               </div>
               <div className="flex-1 pb-4">
@@ -488,19 +406,19 @@ const CryptoScamsOverview = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-20 left-10 w-64 h-64 bg-destructive/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, 30, 0], 
+          animate={{
+            x: [0, 30, 0],
             y: [0, -20, 0],
-            scale: [1, 1.1, 1]
+            scale: [1, 1.1, 1],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-20 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, -20, 0], 
+          animate={{
+            x: [0, -20, 0],
             y: [0, 30, 0],
-            scale: [1, 1.2, 1]
+            scale: [1, 1.2, 1],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -519,10 +437,9 @@ const CryptoScamsOverview = () => {
             What Are <span className="text-destructive">Crypto Scams</span>?
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Crypto scams are fraudulent schemes designed to steal your cryptocurrency, 
-            private keys, or personal information. Scammers exploit the decentralized 
-            and irreversible nature of blockchain transactions. Once your crypto is gone, 
-            it's basically impossible to recover.
+            Crypto scams are fraudulent schemes designed to steal your cryptocurrency, private keys, or personal
+            information. Scammers exploit the decentralized and irreversible nature of blockchain transactions. Once
+            your crypto is gone, it's basically impossible to recover.
           </p>
         </motion.div>
 
@@ -534,33 +451,36 @@ const CryptoScamsOverview = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
         >
-          <div ref={stat1.ref} className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center">
+          <div
+            ref={stat1.ref}
+            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center"
+          >
             <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-3">
               <DollarSign className="w-6 h-6 text-red-500" />
             </div>
-            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">
-              ${stat1.count / 10}B
-            </div>
+            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">${stat1.count / 10}B</div>
             <p className="text-sm text-muted-foreground">Lost to crypto scams in 2023</p>
           </div>
 
-          <div ref={stat2.ref} className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center">
+          <div
+            ref={stat2.ref}
+            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center"
+          >
             <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-3">
               <TrendingUp className="w-6 h-6 text-orange-500" />
             </div>
-            <div className="text-3xl md:text-4xl font-bold text-orange-500 mb-1">
-              {stat2.count}%
-            </div>
+            <div className="text-3xl md:text-4xl font-bold text-orange-500 mb-1">{stat2.count}%</div>
             <p className="text-sm text-muted-foreground">Increase in scams since 2020</p>
           </div>
 
-          <div ref={stat3.ref} className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center">
+          <div
+            ref={stat3.ref}
+            className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 text-center"
+          >
             <div className="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center mx-auto mb-3">
               <Users className="w-6 h-6 text-yellow-500" />
             </div>
-            <div className="text-3xl md:text-4xl font-bold text-yellow-500 mb-1">
-              {stat3.count}K+
-            </div>
+            <div className="text-3xl md:text-4xl font-bold text-yellow-500 mb-1">{stat3.count}K+</div>
             <p className="text-sm text-muted-foreground">Victims reported in 2023</p>
           </div>
         </motion.div>
@@ -574,13 +494,11 @@ const CryptoScamsOverview = () => {
           className="max-w-5xl mx-auto mb-12"
         >
           <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8">
-            <h3 className="text-xl font-semibold mb-4 text-center">
-              The Scammer's Playbook
-            </h3>
+            <h3 className="text-xl font-semibold mb-4 text-center">The Scammer's Playbook</h3>
             <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
               While tactics vary, all crypto scams share common goals and methods. Click to learn more:
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {keyPoints.map((point, index) => (
                 <KeyPointCard key={point.title} point={point} index={index} />
@@ -602,8 +520,8 @@ const CryptoScamsOverview = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center text-muted-foreground mt-8 max-w-2xl mx-auto"
         >
-          Below you'll find a comprehensive catalog of 30+ scam types, 
-          organized by category, with real-world examples and proven defense strategies.
+          Below you'll find a comprehensive catalog of 30+ scam types, organized by category, with real-world examples
+          and proven defense strategies.
         </motion.p>
       </div>
     </section>
