@@ -451,7 +451,7 @@ const ScamsCatalog = () => {
             </h3>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto items-stretch">
+          <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto items-start">
             {goldenRules.map((rule, index) => (
               <GoldenRuleCard key={rule.id} rule={rule} index={index} />
             ))}
