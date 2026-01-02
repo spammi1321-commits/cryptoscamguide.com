@@ -73,10 +73,10 @@ const useCountUp = (end: number, duration: number = 2000, start: number = 0) => 
 // Statistics data
 const statistics = [
   {
-    value: 5.6,
-    suffix: "B",
+    value: 6.0,
+    suffix: "B+",
     prefix: "$",
-    label: "Lost to crypto scams in 2023",
+    label: "Lost to crypto scams in 2025",
     icon: DollarSign,
     color: "text-red-500",
   },
@@ -84,15 +84,15 @@ const statistics = [
     value: 300,
     suffix: "%",
     prefix: "",
-    label: "Increase in scams since 2020",
+    label: "Increase in scams in 2025",
     icon: TrendingUp,
     color: "text-orange-500",
   },
   {
-    value: 46,
+    value: 100,
     suffix: "K+",
     prefix: "",
-    label: "Victims reported in 2023",
+    label: "Victims reported in 2025",
     icon: Users,
     color: "text-yellow-500",
   },
