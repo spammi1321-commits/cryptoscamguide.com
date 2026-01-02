@@ -72,12 +72,11 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="h-full"
     >
       <motion.button
         onClick={() => setIsExpanded(!isExpanded)}
         className={cn(
-          "w-full h-full text-left p-5 rounded-xl border transition-all duration-300 flex flex-col",
+          "w-full text-left p-5 rounded-xl border transition-all duration-300 flex flex-col",
           rule.bgColor,
           isExpanded && "ring-2 ring-offset-2 ring-offset-background",
           isExpanded && rule.id === "urgency" && "ring-red-500/50",
