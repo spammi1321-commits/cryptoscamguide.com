@@ -298,56 +298,6 @@ const ScamQuiz = () => {
   );
 };
 
-// Timeline Component
-const ScamTimeline = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8"
-    >
-      <h3 className="text-xl font-semibold text-center mb-2">Anatomy of a Scam</h3>
-      <p className="text-muted-foreground text-center mb-8 text-sm">How scammers typically operate</p>
-
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-yellow-500 to-destructive hidden md:block" />
-
-        <div className="space-y-4">
-          {scamTimeline.map((step, index) => (
-            <motion.div
-              key={step.step}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="flex gap-4 items-start"
-            >
-              <div
-                className={cn(
-                  "w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 relative z-10",
-                  step.color,
-                )}
-              >
-                <step.icon className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1 pb-4">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-muted-foreground">Step {step.step}</span>
-                </div>
-                <h4 className="font-semibold mb-1">{step.title}</h4>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const CryptoScamsOverview = () => {
   return (
     <section id="overview" className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
