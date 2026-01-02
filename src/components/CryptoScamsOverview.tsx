@@ -20,6 +20,84 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
+// Animated counter hook
+const useCountUp = (end: number, duration: number = 2000, start: number = 0) => {
+  const [count, setCount] = useState(start);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.floor(start + (end - start) * easeOutQuart));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isVisible, end, duration, start]);
+
+  return { count, ref };
+};
+
+// Statistics data
+const statistics = [
+  {
+    value: 5.6,
+    suffix: "B",
+    prefix: "$",
+    label: "Lost to crypto scams in 2023",
+    icon: DollarSign,
+    color: "text-red-500",
+  },
+  {
+    value: 300,
+    suffix: "%",
+    prefix: "",
+    label: "Increase in scams since 2020",
+    icon: TrendingUp,
+    color: "text-orange-500",
+  },
+  {
+    value: 46,
+    suffix: "K+",
+    prefix: "",
+    label: "Victims reported in 2023",
+    icon: Users,
+    color: "text-yellow-500",
+  },
+];
+
 // Key points with expanded details
 const keyPoints = [
   {
