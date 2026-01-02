@@ -364,9 +364,8 @@ const CryptoScamsOverview = () => {
           </div>
         </motion.div>
 
-        {/* Timeline and Quiz Grid */}
+        {/* Quiz Grid */}
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
-          <ScamTimeline />
           <ScamQuiz />
         </div>
 
