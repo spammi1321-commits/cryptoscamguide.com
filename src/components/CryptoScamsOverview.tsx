@@ -395,11 +395,6 @@ const ScamTimeline = () => {
 };
 
 const CryptoScamsOverview = () => {
-  // Animated counters
-  const stat1 = useCountUp(60, 2000);
-  const stat2 = useCountUp(300, 2500);
-  const stat3 = useCountUp(100, 2000);
-
   return (
     <section id="overview" className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
       {/* Floating background elements */}
