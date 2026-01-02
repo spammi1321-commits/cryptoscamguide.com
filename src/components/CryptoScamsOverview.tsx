@@ -537,7 +537,7 @@ const CryptoScamsOverview = () => {
               <DollarSign className="w-6 h-6 text-red-500" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">${stat1.count / 10}B</div>
-            <p className="text-sm text-muted-foreground">Lost to crypto scams in 2023</p>
+            <p className="text-sm text-muted-foreground">Lost to crypto scams in 2025</p>
           </div>
 
           <div
@@ -548,7 +548,7 @@ const CryptoScamsOverview = () => {
               <TrendingUp className="w-6 h-6 text-orange-500" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-orange-500 mb-1">{stat2.count}%</div>
-            <p className="text-sm text-muted-foreground">Increase in scams since 2020</p>
+            <p className="text-sm text-muted-foreground">Increase in scams since 2024</p>
           </div>
 
           <div
@@ -559,7 +559,7 @@ const CryptoScamsOverview = () => {
               <Users className="w-6 h-6 text-yellow-500" />
             </div>
             <div className="text-3xl md:text-4xl font-bold text-yellow-500 mb-1">{stat3.count}K+</div>
-            <p className="text-sm text-muted-foreground">Victims reported in 2023</p>
+            <p className="text-sm text-muted-foreground">Victims reported in 2025</p>
           </div>
         </motion.div>
 
