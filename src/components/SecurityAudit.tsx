@@ -280,10 +280,10 @@ const SecurityAudit = () => {
                   {groupedItems[category].map((item, index) => (
                     <motion.button
                       key={item.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: categoryIndex * 0.1 + index * 0.05 }}
+                      transition={{ duration: 0.3, delay: categoryIndex * 0.05 + index * 0.03 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => toggleItem(item.id)}
                       className={cn(
