@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, forwardRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AlertTriangle,
@@ -8,14 +8,7 @@ import {
   ChevronDown,
   Check,
   X,
-  TrendingUp,
-  Users,
-  Clock,
   Zap,
-  Eye,
-  MessageSquare,
-  Wallet,
-  Ban,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -170,17 +163,20 @@ const KeyPointCard = ({ point, index }: { point: (typeof keyPoints)[0]; index: n
 };
 
 // Quiz Component
-const ScamQuiz = () => {
+const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<boolean | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [quizComplete, setQuizComplete] = useState(false);
 
+  const question = useMemo(() => quizQuestions[currentQuestion], [currentQuestion]);
+  const isCorrect = selectedAnswer === question.isScam;
+
   const handleAnswer = (answer: boolean) => {
     setSelectedAnswer(answer);
     setShowResult(true);
-    if (answer === quizQuestions[currentQuestion].isScam) {
+    if (answer === question.isScam) {
       setScore((prev) => prev + 1);
     }
   };
@@ -203,11 +199,9 @@ const ScamQuiz = () => {
     setQuizComplete(false);
   };
 
-  const question = quizQuestions[currentQuestion];
-  const isCorrect = selectedAnswer === question.isScam;
-
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -296,11 +290,12 @@ const ScamQuiz = () => {
       )}
     </motion.div>
   );
-};
+});
+ScamQuiz.displayName = "ScamQuiz";
 
-const CryptoScamsOverview = () => {
+const CryptoScamsOverview = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section id="overview" className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
+    <section ref={ref} id="overview" className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -373,6 +368,7 @@ const CryptoScamsOverview = () => {
       </div>
     </section>
   );
-};
+});
+CryptoScamsOverview.displayName = "CryptoScamsOverview";
 
 export default CryptoScamsOverview;

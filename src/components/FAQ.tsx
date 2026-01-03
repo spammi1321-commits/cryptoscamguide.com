@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { 
   HelpCircle, 
@@ -73,9 +74,9 @@ const faqs: FaqItem[] = [
   }
 ];
 
-const FAQ = () => {
+const FAQ = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section id="faq" className="py-20 md:py-32 bg-muted/30">
+    <section ref={ref} id="faq" className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -131,6 +132,7 @@ const FAQ = () => {
       </div>
     </section>
   );
-};
+});
+FAQ.displayName = "FAQ";
 
 export default FAQ;
