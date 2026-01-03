@@ -247,8 +247,7 @@ const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
               </Button>
               <Button
                 onClick={() => handleAnswer(false)}
-                variant="outline"
-                className="gap-2 border-green-500/50 text-green-500 hover:bg-green-500/10"
+                className="gap-2 bg-green-600 hover:bg-green-700 text-white"
               >
                 <Check className="w-4 h-4" />
                 This is SAFE
