@@ -90,6 +90,13 @@ const quizQuestions = [
     explanation:
       "No investment is 'zero risk' and extremely high APY promises are a major red flag. Celebrity endorsements are often fake.",
   },
+  {
+    id: 5,
+    scenario: "You receive an email from your hardware wallet manufacturer about a firmware update, linking to their official website.",
+    isScam: false,
+    explanation:
+      "Legitimate companies do send update notifications. Always verify the sender and go directly to the official website rather than clicking links.",
+  },
 ];
 
 // Expandable Key Point Card
