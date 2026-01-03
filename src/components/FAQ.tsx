@@ -28,6 +28,11 @@ interface FaqItem {
 
 const faqs: FaqItem[] = [
   {
+    question: "What exactly is a crypto scam?",
+    answer: "A crypto scam is any fraudulent scheme designed to steal your cryptocurrency, private keys, or personal information. Scammers exploit the irreversible nature of blockchain transactions—once crypto is sent, it cannot be recovered. Common types include fake giveaways, phishing sites, rug pulls, and impersonation scams.",
+    icon: HelpCircle
+  },
+  {
     question: "Why is my seed phrase so important, and how should I protect it?",
     answer: "Your seed phrase (12-24 words) is the master key to all your crypto. Anyone with it has complete, irreversible access to your funds. NEVER type it on any website, app, or online form—no legitimate service will ever ask for it. Write it down on paper (or metal for fire/water resistance), store it in multiple secure physical locations, and never photograph, screenshot, or store it digitally. If someone asks for your seed phrase, it's always a scam—no exceptions.",
     icon: Key
