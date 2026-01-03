@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Shield, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -9,7 +10,7 @@ interface ScamModalProps {
   scam: ScamData | null;
 }
 
-const ScamModal = ({ isOpen, onClose, scam }: ScamModalProps) => {
+const ScamModal = forwardRef<HTMLDivElement, ScamModalProps>(({ isOpen, onClose, scam }, ref) => {
   if (!scam) return null;
 
   const category = scamCategories.find(cat => cat.id === scam.category);
@@ -18,6 +19,7 @@ const ScamModal = ({ isOpen, onClose, scam }: ScamModalProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          ref={ref}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -141,6 +143,7 @@ const ScamModal = ({ isOpen, onClose, scam }: ScamModalProps) => {
       )}
     </AnimatePresence>
   );
-};
+});
+ScamModal.displayName = "ScamModal";
 
 export default ScamModal;
