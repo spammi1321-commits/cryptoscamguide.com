@@ -92,10 +92,10 @@ const quizQuestions = [
   },
   {
     id: 5,
-    scenario: "You receive an email from your hardware wallet manufacturer about a firmware update, linking to their official website.",
+    scenario: "Your friend texts you saying they just sent 0.1 ETH to your wallet, and you see the transaction confirmed on Etherscan.",
     isScam: false,
     explanation:
-      "Legitimate companies do send update notifications. Always verify the sender and go directly to the official website rather than clicking links.",
+      "Receiving crypto from someone you know personally, with the transaction visible on the blockchain, is a normal and safe interaction.",
   },
 ];
 
