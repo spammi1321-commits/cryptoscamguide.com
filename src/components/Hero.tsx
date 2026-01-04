@@ -1,17 +1,19 @@
 import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { ChevronDown, Gift, ListChecks, Sparkles } from "lucide-react";
+import { ChevronDown, Gift, ListChecks, Shield, Sparkles } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target); // Start at target to avoid "1+" flash
 
   useEffect(() => {
     if (isInView) {
+      // Reset and animate
+      setCount(0);
       let start = 0;
-      const duration = 1500;
+      const duration = 1200;
       const increment = target / (duration / 16);
       const timer = setInterval(() => {
         start += increment;
@@ -134,6 +136,21 @@ const Hero = () => {
             Your essential guide to spotting and stopping crypto scams 
             before they drain your wallet.
           </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <button
+              onClick={scrollToOverview}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+            >
+              <Shield className="w-5 h-5" />
+              Start Learning
+            </button>
+          </motion.div>
 
           {/* Trust indicators */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
