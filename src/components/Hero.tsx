@@ -28,7 +28,12 @@ const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: str
     }
   }, [isInView, target]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
 };
 
 const Hero = () => {
@@ -36,12 +41,12 @@ const Hero = () => {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   const shouldReduceMotion = isMobile || prefersReducedMotion;
-  
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-  
+
   // Disable parallax on mobile for better performance
   const y1 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 150]);
   const y2 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 100]);
@@ -49,21 +54,27 @@ const Hero = () => {
 
   const scrollToOverview = () => {
     document.getElementById("overview")?.scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
-  return <header ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" aria-label="Introduction">
+  return (
+    <header
+      ref={heroRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      aria-label="Introduction"
+    >
       {/* Animated aurora background - simplified on mobile */}
       <div className="absolute inset-0 overflow-hidden">
         {shouldReduceMotion ? (
-          <div 
+          <div
             className="absolute -inset-[100px] opacity-30"
             style={{
-              background: "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 60%, hsl(0 72% 51% / 0.3), transparent 50%)"
+              background:
+                "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
             }}
           />
         ) : (
-          <motion.div 
+          <motion.div
             className="absolute -inset-[100px] opacity-30 will-change-auto"
             animate={{
               background: [
@@ -71,33 +82,38 @@ const Hero = () => {
                 "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 30% 70%, hsl(0 72% 51% / 0.3), transparent 50%)",
                 "radial-gradient(ellipse 80% 50% at 80% 50%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 40%, hsl(0 72% 51% / 0.3), transparent 50%)",
                 "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
-              ]
+              ],
             }}
             transition={{
               duration: 10,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         )}
       </div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,hsl(210_100%_52%/0.1),transparent_60%)]" />
-      
+
       {/* Grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(hsl(220_20%_15%/0.5)_1px,transparent_1px),linear-gradient(90deg,hsl(220_20%_15%/0.5)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
 
       <motion.div style={{ y: y2, opacity }} className="container relative z-10 px-4 md:px-6">
         <motion.div style={{ y: y1 }} className="max-w-4xl mx-auto text-center">
           {/* Warning badge */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-alert/30 mb-8">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-alert/30 mb-8"
+          >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-alert"></span>
@@ -106,64 +122,58 @@ const Hero = () => {
           </motion.div>
 
           {/* Main heading */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6,
-          delay: 0.1
-        }}>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.1,
+            }}
+          >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-display mb-6 leading-[1.15] tracking-tight text-balance">
-              Don't Be the Next{" "}
-              <span className="gradient-text-alert">Crypto Scam Victim.</span>
+              Don't Be the Next <span className="gradient-text-alert">Crypto Scam Victim.</span>
             </h1>
           </motion.div>
 
           {/* Subtitle */}
-          <motion.p initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6,
-          delay: 0.2
-        }} className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-balance">
-            Your essential guide to spotting and stopping crypto scams 
-            before they drain your wallet.
-          </motion.p>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.2,
+            }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
           >
-            <button
-              onClick={scrollToOverview}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
-            >
-              <Shield className="w-5 h-5" />
-              Start Learning
-            </button>
-          </motion.div>
+            Your essential guide to spotting and stopping crypto scams before they drain your wallet.
+          </motion.p>
 
           {/* Trust indicators */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex items-center gap-2"
             >
               <ListChecks className="w-4 h-4 text-primary" />
-              <span><AnimatedCounter target={30} suffix="+" /> Scams Listed</span>
+              <span>
+                <AnimatedCounter target={30} suffix="+" /> Scams Listed
+              </span>
             </motion.div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
@@ -172,7 +182,7 @@ const Hero = () => {
               <Sparkles className="w-4 h-4 text-warning" />
               <span>Interactive Guidance</span>
             </motion.div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
@@ -198,13 +208,13 @@ const Hero = () => {
                 <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
               </div>
             ) : (
-              <motion.div 
-                animate={{ y: [0, 8, 0] }} 
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
                 transition={{
                   duration: 1.2,
                   repeat: Infinity,
-                  ease: "easeInOut"
-                }} 
+                  ease: "easeInOut",
+                }}
                 className="flex flex-col items-center -space-y-3"
               >
                 <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
@@ -214,6 +224,7 @@ const Hero = () => {
           </motion.button>
         </motion.div>
       </motion.div>
-    </header>;
+    </header>
+  );
 };
 export default Hero;
