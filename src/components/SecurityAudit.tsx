@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ShieldCheck, ShieldAlert, Check, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const checklistItems = [
   { id: 1, label: "I use a hardware wallet for significant holdings", category: "Wallet Security" },
@@ -71,6 +72,9 @@ const SecurityAudit = () => {
   const [hasReached100, setHasReached100] = useState(false);
   const progress = (checkedItems.length / checklistItems.length) * 100;
   const prevProgressRef = useRef(0);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = isMobile || prefersReducedMotion;
 
   const toggleItem = (id: number) => {
     setCheckedItems((prev) =>
@@ -178,30 +182,20 @@ const SecurityAudit = () => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={getStatusColor()}
-                    initial={{ scale: 0.5, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    exit={{ scale: 0.5, rotate: 180 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
                   >
                     {getStatusColor() === "success" ? (
-                      <motion.div
-                        animate={{ scale: [1, 1.15, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        <ShieldCheck className="w-8 h-8 text-success" />
-                      </motion.div>
+                      <ShieldCheck className="w-8 h-8 text-success" />
                     ) : (
-                      <motion.div
-                        animate={{ rotate: [0, -5, 5, -5, 0] }}
-                        transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
-                      >
-                        <ShieldAlert
-                          className={cn(
-                            "w-8 h-8",
-                            getStatusColor() === "warning" ? "text-warning" : "text-alert"
-                          )}
-                        />
-                      </motion.div>
+                      <ShieldAlert
+                        className={cn(
+                          "w-8 h-8",
+                          getStatusColor() === "warning" ? "text-warning" : "text-alert"
+                        )}
+                      />
                     )}
                   </motion.div>
                 </AnimatePresence>
@@ -283,8 +277,8 @@ const SecurityAudit = () => {
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: categoryIndex * 0.05 + index * 0.03 }}
-                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2, delay: shouldReduceMotion ? 0 : index * 0.02 }}
+                      whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
                       onClick={() => toggleItem(item.id)}
                       className={cn(
                         "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-300",

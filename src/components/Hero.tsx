@@ -1,6 +1,7 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ChevronDown, Gift, ListChecks, Sparkles } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
   const ref = useRef(null);
@@ -30,13 +31,18 @@ const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: str
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = isMobile || prefersReducedMotion;
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
   
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  // Disable parallax on mobile for better performance
+  const y1 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 150]);
+  const y2 = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 100]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const scrollToOverview = () => {
@@ -45,24 +51,33 @@ const Hero = () => {
     });
   };
   return <header ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" aria-label="Introduction">
-      {/* Animated aurora background */}
+      {/* Animated aurora background - simplified on mobile */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
-          className="absolute -inset-[100px] opacity-30"
-          animate={{
-            background: [
-              "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
-              "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 30% 70%, hsl(0 72% 51% / 0.3), transparent 50%)",
-              "radial-gradient(ellipse 80% 50% at 80% 50%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 40%, hsl(0 72% 51% / 0.3), transparent 50%)",
-              "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
-            ]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+        {shouldReduceMotion ? (
+          <div 
+            className="absolute -inset-[100px] opacity-30"
+            style={{
+              background: "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 60%, hsl(0 72% 51% / 0.3), transparent 50%)"
+            }}
+          />
+        ) : (
+          <motion.div 
+            className="absolute -inset-[100px] opacity-30 will-change-auto"
+            animate={{
+              background: [
+                "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
+                "radial-gradient(ellipse 80% 50% at 50% 30%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 30% 70%, hsl(0 72% 51% / 0.3), transparent 50%)",
+                "radial-gradient(ellipse 80% 50% at 80% 50%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 60% 40%, hsl(0 72% 51% / 0.3), transparent 50%)",
+                "radial-gradient(ellipse 80% 50% at 20% 40%, hsl(210 100% 52% / 0.4), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 72% 51% / 0.3), transparent 50%)",
+              ]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        )}
       </div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-20%,hsl(210_100%_52%/0.1),transparent_60%)]" />
       
@@ -160,18 +175,25 @@ const Hero = () => {
             className="mt-12 flex justify-center mx-auto cursor-pointer hover:scale-110 transition-transform"
             aria-label="Scroll to crypto scams overview"
           >
-            <motion.div 
-              animate={{ y: [0, 8, 0] }} 
-              transition={{
-                duration: 1.2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }} 
-              className="flex flex-col items-center -space-y-3"
-            >
-              <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
-              <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
-            </motion.div>
+            {shouldReduceMotion ? (
+              <div className="flex flex-col items-center -space-y-3">
+                <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
+                <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
+              </div>
+            ) : (
+              <motion.div 
+                animate={{ y: [0, 8, 0] }} 
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }} 
+                className="flex flex-col items-center -space-y-3"
+              >
+                <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
+                <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
+              </motion.div>
+            )}
           </motion.button>
         </motion.div>
       </motion.div>

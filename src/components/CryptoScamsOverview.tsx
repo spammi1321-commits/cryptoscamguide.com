@@ -1,5 +1,5 @@
 import { useState, forwardRef, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   AlertTriangle,
   Target,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Key points with expanded details
 const keyPoints = [
@@ -300,28 +301,41 @@ const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
 ScamQuiz.displayName = "ScamQuiz";
 
 const CryptoScamsOverview = forwardRef<HTMLElement>((_, ref) => {
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = isMobile || prefersReducedMotion;
+  
   return (
     <section ref={ref} id="overview" className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
-      {/* Floating background elements */}
+      {/* Static background elements on mobile, animated on desktop */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-64 h-64 bg-destructive/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, -20, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {shouldReduceMotion ? (
+          <>
+            <div className="absolute top-20 left-10 w-64 h-64 bg-destructive/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
+          </>
+        ) : (
+          <>
+            <motion.div
+              className="absolute top-20 left-10 w-64 h-64 bg-destructive/5 rounded-full blur-3xl"
+              animate={{
+                x: [0, 30, 0],
+                y: [0, -20, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-20 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl"
+              animate={{
+                x: [0, -20, 0],
+                y: [0, 30, 0],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

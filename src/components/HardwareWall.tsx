@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { HardDrive, Wifi, Shield, AlertTriangle, Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type WalletType = "hot" | "cold";
 
@@ -28,15 +29,18 @@ const features = [{
 
 const HardwareWall = () => {
   const [activeType, setActiveType] = useState<WalletType>("cold");
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  const shouldReduceMotion = isMobile || prefersReducedMotion;
   
   const featureVariants = {
-    hidden: { opacity: 0, x: activeType === "hot" ? -20 : 20 },
+    hidden: { opacity: 0, x: shouldReduceMotion ? 0 : (activeType === "hot" ? -10 : 10) },
     visible: (i: number) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: i * 0.1,
-        duration: 0.3,
+        delay: shouldReduceMotion ? 0 : i * 0.05,
+        duration: shouldReduceMotion ? 0.15 : 0.2,
         ease: "easeOut" as const
       }
     })
@@ -105,12 +109,7 @@ const HardwareWall = () => {
                 activeType === "hot" ? "text-alert-foreground" : "text-muted-foreground hover:text-foreground"
               )}
             >
-              <motion.div
-                animate={activeType === "hot" ? { rotate: [0, -10, 10, -10, 0] } : {}}
-                transition={{ duration: 0.5, repeat: activeType === "hot" ? Infinity : 0, repeatDelay: 2 }}
-              >
-                <Wifi className="w-5 h-5" aria-hidden="true" />
-              </motion.div>
+              <Wifi className="w-5 h-5" aria-hidden="true" />
               <span>Software Wallet</span>
             </button>
             <button 
@@ -120,12 +119,7 @@ const HardwareWall = () => {
                 activeType === "cold" ? "text-success-foreground" : "text-muted-foreground hover:text-foreground"
               )}
             >
-              <motion.div
-                animate={activeType === "cold" ? { scale: [1, 1.1, 1] } : {}}
-                transition={{ duration: 1.5, repeat: activeType === "cold" ? Infinity : 0 }}
-              >
-                <HardDrive className="w-5 h-5" aria-hidden="true" />
-              </motion.div>
+              <HardDrive className="w-5 h-5" aria-hidden="true" />
               <span>Hardware Wallet</span>
             </button>
           </div>
@@ -149,37 +143,29 @@ const HardwareWall = () => {
       )}>
           {/* Status indicator */}
           <div className={cn("flex items-center justify-center gap-3 p-4 rounded-t-2xl border border-b-0 transition-colors duration-500", activeType === "hot" ? "bg-alert/10 border-alert/30" : "bg-success/10 border-success/30")}>
-            <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
               {activeType === "hot" ? (
                 <motion.div
                   key="hot"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="flex items-center gap-3"
                 >
-                  <motion.div
-                    animate={{ rotate: [0, -15, 15, -15, 0] }}
-                    transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 1.5 }}
-                  >
-                    <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
-                  </motion.div>
+                  <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
                   <span className="font-semibold text-alert">Higher Risk Profile</span>
                 </motion.div>
               ) : (
                 <motion.div
                   key="cold"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="flex items-center gap-3"
                 >
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Shield className="w-5 h-5 text-success" aria-hidden="true" />
-                  </motion.div>
+                  <Shield className="w-5 h-5 text-success" aria-hidden="true" />
                   <span className="font-semibold text-success">Maximum Security</span>
                 </motion.div>
               )}
