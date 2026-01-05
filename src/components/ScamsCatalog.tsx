@@ -68,13 +68,8 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
   const IconComponent = rule.icon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-    >
-      <motion.button
+    <div className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+      <button
         onClick={() => setIsExpanded(!isExpanded)}
         className={cn(
           "w-full text-left p-5 rounded-xl border transition-all duration-300 flex flex-col",
@@ -84,68 +79,56 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
           isExpanded && rule.id === "seedphrase" && "ring-orange-500/50",
           isExpanded && rule.id === "toogood" && "ring-yellow-500/50",
         )}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
       >
         <div className="flex items-start gap-4 flex-1">
-          <motion.div
-            className={cn("p-2.5 rounded-lg flex-shrink-0", rule.bgColor)}
-            animate={isExpanded ? { rotate: [0, -10, 10, 0] } : {}}
-            transition={{ duration: 0.5 }}
-          >
+          <div className={cn("p-2.5 rounded-lg flex-shrink-0 transition-transform duration-300", rule.bgColor, isExpanded && "rotate-3")}>
             <IconComponent className={cn("w-5 h-5", rule.color)} />
-          </motion.div>
+          </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-1">
               <h4 className={cn("font-semibold font-display", rule.color)}>{rule.title}</h4>
-              <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+              <div className={cn("transition-transform duration-300", isExpanded && "rotate-180")}>
                 <ChevronDown className={cn("w-4 h-4 flex-shrink-0", rule.color)} />
-              </motion.div>
+              </div>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">{rule.shortDesc}</p>
           </div>
         </div>
 
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden"
-            >
-              <div className="mt-4 pt-4 border-t border-border/50">
-                <p className="text-xs font-medium text-muted-foreground mb-3">Common phrases scammers use:</p>
-                <ul className="space-y-2">
-                  {rule.details.map((detail, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className={cn(
-                        "text-sm flex items-start gap-2",
-                        i === rule.details.length - 1
-                          ? "text-foreground font-medium mt-3"
-                          : "text-muted-foreground italic",
-                      )}
-                    >
-                      {i === rule.details.length - 1 ? (
-                        <span className={cn("mt-0.5", rule.color)}>→</span>
-                      ) : (
-                        <span className={cn("mt-0.5", rule.color)}>"</span>
-                      )}
-                      {detail}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+        <div 
+          className={cn(
+            "grid transition-all duration-300 ease-out",
+            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
           )}
-        </AnimatePresence>
-      </motion.button>
-    </motion.div>
+        >
+          <div className="overflow-hidden">
+            <div className="mt-4 pt-4 border-t border-border/50">
+              <p className="text-xs font-medium text-muted-foreground mb-3">Common phrases scammers use:</p>
+              <ul className="space-y-2">
+                {rule.details.map((detail, i) => (
+                  <li
+                    key={i}
+                    className={cn(
+                      "text-sm flex items-start gap-2",
+                      i === rule.details.length - 1
+                        ? "text-foreground font-medium mt-3"
+                        : "text-muted-foreground italic",
+                    )}
+                  >
+                    {i === rule.details.length - 1 ? (
+                      <span className={cn("mt-0.5", rule.color)}>→</span>
+                    ) : (
+                      <span className={cn("mt-0.5", rule.color)}>"</span>
+                    )}
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
   );
 };
 
@@ -370,11 +353,11 @@ const ScamsCatalog = () => {
                   key={scam.id}
                   variants={cardVariants}
                   onClick={() => setSelectedScam(scam)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
+                  onMouseMove={!isMobile ? handleMouseMove : undefined}
+                  onMouseLeave={!isMobile ? handleMouseLeave : undefined}
                   aria-label={`Learn about ${scam.title} scam`}
                   className="group relative bg-card rounded-xl border border-border/50 p-5 overflow-hidden text-left transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/5"
-                  style={{ transformStyle: "preserve-3d", transition: "transform 0.1s ease-out, box-shadow 0.3s ease" }}
+                  style={!isMobile ? { transformStyle: "preserve-3d", transition: "transform 0.1s ease-out, box-shadow 0.3s ease" } : undefined}
                 >
                   {/* Glow effect on hover */}
                   <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/5 to-transparent" />
