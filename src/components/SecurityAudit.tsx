@@ -250,14 +250,8 @@ const SecurityAudit = () => {
 
           {/* Checklist grouped by category */}
           <div className="space-y-8">
-            {categories.map((category, categoryIndex) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
-              >
+            {categories.map((category) => (
+              <div key={category}>
                 {/* Category header */}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
@@ -311,7 +305,7 @@ const SecurityAudit = () => {
                     );
                   })}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
