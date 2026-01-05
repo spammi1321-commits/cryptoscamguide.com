@@ -5,6 +5,7 @@ import { scamCategories, type ScamData } from "@/data/scams";
 import ScamModal from "./ScamModal";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface GoldenRule {
   id: string;
@@ -148,7 +149,8 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
   );
 };
 
-const INITIAL_DISPLAY_COUNT = 12;
+const INITIAL_DISPLAY_COUNT_DESKTOP = 12;
+const INITIAL_DISPLAY_COUNT_MOBILE = 6;
 
 // Short labels for filter buttons
 const getShortLabel = (name: string): string => {
@@ -171,6 +173,9 @@ const ScamsCatalog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const isMobile = useIsMobile();
+  
+  const initialDisplayCount = isMobile ? INITIAL_DISPLAY_COUNT_MOBILE : INITIAL_DISPLAY_COUNT_DESKTOP;
 
   // 3D tilt effect handler
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -202,8 +207,8 @@ const ScamsCatalog = () => {
       )
     : filteredScams;
 
-  const displayedScams = showAll ? searchedScams : searchedScams.slice(0, INITIAL_DISPLAY_COUNT);
-  const hasMoreScams = searchedScams.length > INITIAL_DISPLAY_COUNT;
+  const displayedScams = showAll ? searchedScams : searchedScams.slice(0, initialDisplayCount);
+  const hasMoreScams = searchedScams.length > initialDisplayCount;
 
   const containerVariants = {
     hidden: { opacity: 0 },
