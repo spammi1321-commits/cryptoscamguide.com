@@ -202,25 +202,18 @@ const Hero = () => {
             className="mt-12 flex justify-center mx-auto cursor-pointer hover:scale-110 transition-transform"
             aria-label="Scroll to crypto scams overview"
           >
-            {shouldReduceMotion ? (
-              <div className="flex flex-col items-center -space-y-3">
-                <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
-                <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
-              </div>
-            ) : (
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 1.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="flex flex-col items-center -space-y-3"
-              >
-                <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
-                <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
-              </motion.div>
-            )}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="flex flex-col items-center -space-y-3"
+            >
+              <ChevronDown className="w-6 h-6 text-muted-foreground" aria-hidden="true" />
+              <ChevronDown className="w-6 h-6 text-muted-foreground/80" aria-hidden="true" />
+            </motion.div>
           </motion.button>
         </motion.div>
       </motion.div>

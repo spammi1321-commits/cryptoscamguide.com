@@ -143,33 +143,17 @@ const HardwareWall = () => {
       )}>
           {/* Status indicator */}
           <div className={cn("flex items-center justify-center gap-3 p-4 rounded-t-2xl border border-b-0 transition-colors duration-500", activeType === "hot" ? "bg-alert/10 border-alert/30" : "bg-success/10 border-success/30")}>
-          <AnimatePresence mode="wait">
-              {activeType === "hot" ? (
-                <motion.div
-                  key="hot"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center gap-3"
-                >
-                  <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
-                  <span className="font-semibold text-alert">Higher Risk Profile</span>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="cold"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center gap-3"
-                >
-                  <Shield className="w-5 h-5 text-success" aria-hidden="true" />
-                  <span className="font-semibold text-success">Maximum Security</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {activeType === "hot" ? (
+              <div className="flex items-center gap-3">
+                <AlertTriangle className="w-5 h-5 text-alert" aria-hidden="true" />
+                <span className="font-semibold text-alert">Higher Risk Profile</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <Shield className="w-5 h-5 text-success" aria-hidden="true" />
+                <span className="font-semibold text-success">Maximum Security</span>
+              </div>
+            )}
           </div>
 
           {/* Feature list with staggered animation */}
