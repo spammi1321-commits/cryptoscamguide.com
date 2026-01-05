@@ -271,65 +271,45 @@ const SecurityAudit = () => {
                 
                 {/* Category items */}
                 <div className="space-y-3">
-                  {groupedItems[category].map((item, index) => (
-                    <motion.button
-                      key={item.id}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.2, delay: shouldReduceMotion ? 0 : index * 0.02 }}
-                      whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
-                      onClick={() => toggleItem(item.id)}
-                      className={cn(
-                        "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-300",
-                        checkedItems.includes(item.id)
-                          ? "bg-success/5 border-success/30 shadow-sm"
-                          : "bg-card border-border/50 hover:border-border hover:bg-card/80"
-                      )}
-                    >
-                      <motion.div
+                  {groupedItems[category].map((item) => {
+                    const isChecked = checkedItems.includes(item.id);
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => toggleItem(item.id)}
                         className={cn(
-                          "flex-shrink-0 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-300",
-                          checkedItems.includes(item.id)
-                            ? "bg-success border-success"
-                            : "border-muted-foreground/30"
+                          "w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-200",
+                          isChecked
+                            ? "bg-success/5 border-success/30 shadow-sm"
+                            : "bg-card border-border/50 hover:border-border hover:bg-card/80"
                         )}
-                        whileTap={{ scale: 0.8 }}
                       >
-                        <AnimatePresence>
-                          {checkedItems.includes(item.id) && (
-                            <motion.div
-                              initial={{ scale: 0, rotate: -180 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              exit={{ scale: 0, rotate: 180 }}
-                              transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                            >
-                              <Check className="w-4 h-4 text-success-foreground" />
-                            </motion.div>
+                        <div
+                          className={cn(
+                            "flex-shrink-0 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-200",
+                            isChecked
+                              ? "bg-success border-success"
+                              : "border-muted-foreground/30"
                           )}
-                        </AnimatePresence>
-                      </motion.div>
-                      <div className="flex-1">
+                        >
+                          {isChecked && (
+                            <Check className="w-4 h-4 text-success-foreground" />
+                          )}
+                        </div>
                         <p
                           className={cn(
-                            "font-medium transition-colors duration-300",
-                            checkedItems.includes(item.id) ? "text-foreground" : "text-muted-foreground"
+                            "flex-1 font-medium transition-colors duration-200",
+                            isChecked ? "text-foreground" : "text-muted-foreground"
                           )}
                         >
                           {item.label}
                         </p>
-                      </div>
-                      {checkedItems.includes(item.id) && (
-                        <motion.div
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          className="text-success"
-                        >
-                          <Check className="w-5 h-5" />
-                        </motion.div>
-                      )}
-                    </motion.button>
-                  ))}
+                        {isChecked && (
+                          <Check className="w-5 h-5 text-success" />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </motion.div>
             ))}
