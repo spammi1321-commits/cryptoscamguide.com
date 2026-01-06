@@ -2,6 +2,8 @@ import { motion, useInView, useScroll, useTransform, useReducedMotion } from "fr
 import { ChevronDown, Gift, ListChecks, Shield, Sparkles } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import confetti from "canvas-confetti";
 
 const AnimatedCounter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
   const ref = useRef(null);
@@ -159,6 +161,26 @@ const Hero = () => {
           >
             Your essential guide to spotting and stopping crypto scams before they drain your wallet.
           </motion.p>
+
+          {/* Nazdar button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Button
+              size="lg"
+              onClick={() => {
+                confetti({
+                  particleCount: 100,
+                  spread: 70,
+                  origin: { y: 0.6 },
+                });
+              }}
+            >
+              Nazdar
+            </Button>
+          </motion.div>
 
           {/* Trust indicators */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-16 text-muted-foreground text-sm">
