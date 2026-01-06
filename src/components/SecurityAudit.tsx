@@ -29,16 +29,17 @@ const categories = Object.keys(groupedItems);
 
 // Circular Progress Ring Component
 const ProgressRing = ({ progress, color }: { progress: number; color: string }) => {
-  const circumference = 2 * Math.PI * 40;
+  const radius = 36;
+  const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
   
   return (
     <div className="relative w-20 h-20">
-      <svg className="w-20 h-20 transform -rotate-90">
+      <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
         <circle
           cx="40"
           cy="40"
-          r="40"
+          r={radius}
           stroke="currentColor"
           strokeWidth="6"
           fill="transparent"
@@ -47,7 +48,7 @@ const ProgressRing = ({ progress, color }: { progress: number; color: string }) 
         <motion.circle
           cx="40"
           cy="40"
-          r="40"
+          r={radius}
           stroke={color}
           strokeWidth="6"
           fill="transparent"
