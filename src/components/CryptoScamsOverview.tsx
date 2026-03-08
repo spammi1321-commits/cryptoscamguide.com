@@ -105,68 +105,47 @@ const KeyPointCard = ({ point, index }: { point: (typeof keyPoints)[0]; index: n
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+    <button
+      onClick={() => setIsExpanded(!isExpanded)}
+      className={cn(
+        "w-full flex flex-col items-center text-center p-4 rounded-xl bg-background/50 border transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+        isExpanded
+          ? "border-destructive/50 ring-2 ring-destructive/20 ring-offset-2 ring-offset-background"
+          : "border-border/30 hover:border-destructive/30",
+      )}
     >
-      <motion.button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={cn(
-          "w-full flex flex-col items-center text-center p-4 rounded-xl bg-background/50 border transition-all duration-300",
-          isExpanded
-            ? "border-destructive/50 ring-2 ring-destructive/20 ring-offset-2 ring-offset-background"
-            : "border-border/30 hover:border-destructive/30",
-        )}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mb-3 relative">
-          <point.icon className="w-6 h-6 text-destructive" />
-          {/* Pulsing effect */}
-          <motion.div
-            className="absolute inset-0 rounded-full bg-destructive/20"
-            animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-          />
+      <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mb-3">
+        <point.icon className="w-6 h-6 text-destructive" />
+      </div>
+      <div className="flex items-center gap-2 mb-2">
+        <h4 className="font-semibold">{point.title}</h4>
+        <div className={cn("transition-transform duration-300", isExpanded && "rotate-180")}>
+          <ChevronDown className="w-4 h-4 text-muted-foreground" />
         </div>
-        <div className="flex items-center gap-2 mb-2">
-          <h4 className="font-semibold">{point.title}</h4>
-          <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-            <ChevronDown className="w-4 h-4 text-muted-foreground" />
-          </motion.div>
-        </div>
-        <p className="text-sm text-muted-foreground">{point.description}</p>
+      </div>
+      <p className="text-sm text-muted-foreground">{point.description}</p>
 
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="overflow-hidden w-full"
-            >
-              <ul className="mt-4 pt-4 border-t border-border/50 space-y-2 text-left">
-                {point.details.map((detail, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
-                  >
-                    <span className="text-destructive mt-0.5">•</span>
-                    {detail}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.button>
-    </motion.div>
+      <div
+        className={cn(
+          "grid transition-all duration-300 ease-out w-full",
+          isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        )}
+      >
+        <div className="overflow-hidden">
+          <ul className="mt-4 pt-4 border-t border-border/50 space-y-2 text-left">
+            {point.details.map((detail, i) => (
+              <li
+                key={i}
+                className="flex items-start gap-2 text-sm text-muted-foreground"
+              >
+                <span className="text-destructive mt-0.5">•</span>
+                {detail}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </button>
   );
 };
 
@@ -208,14 +187,7 @@ const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
   };
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="max-w-3xl w-full"
-    >
+    <div ref={ref} className="max-w-3xl w-full">
       <div className="flex items-center justify-center gap-2 mb-6">
         <Zap className="w-5 h-5 text-primary" />
         <h3 className="text-xl font-semibold">Can You Spot the Scam?</h3>
@@ -248,7 +220,7 @@ const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
               </Button>
               <Button
                 onClick={() => handleAnswer(false)}
-                className="gap-2 bg-green-600 hover:bg-green-700 text-white"
+                className="gap-2 bg-success hover:bg-success/90 text-success-foreground"
               >
                 <Check className="w-4 h-4" />
                 This is SAFE
@@ -259,7 +231,7 @@ const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
               <div
                 className={cn(
                   "flex items-center justify-center gap-2 p-3 rounded-lg",
-                  isCorrect ? "bg-green-500/10 text-green-500" : "bg-destructive/10 text-destructive",
+                  isCorrect ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive",
                 )}
               >
                 {isCorrect ? <Check className="w-5 h-5" /> : <X className="w-5 h-5" />}
@@ -295,7 +267,7 @@ const ScamQuiz = forwardRef<HTMLDivElement>((_, ref) => {
           </Button>
         </motion.div>
       )}
-    </motion.div>
+    </div>
   );
 });
 ScamQuiz.displayName = "ScamQuiz";
@@ -306,7 +278,7 @@ const CryptoScamsOverview = forwardRef<HTMLElement>((_, ref) => {
   const shouldReduceMotion = isMobile || prefersReducedMotion;
   
   return (
-    <section ref={ref} id="overview" className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
+    <section ref={ref} id="overview" className="py-20 md:py-28 bg-muted/30 relative overflow-hidden">
       {/* Static background elements on mobile, animated on desktop */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {shouldReduceMotion ? (
@@ -340,13 +312,7 @@ const CryptoScamsOverview = forwardRef<HTMLElement>((_, ref) => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-12"
-        >
+        <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             What Are <span className="text-destructive">Crypto Scams</span>?
           </h2>
@@ -355,16 +321,10 @@ const CryptoScamsOverview = forwardRef<HTMLElement>((_, ref) => {
             information. Scammers exploit the decentralized and irreversible nature of blockchain transactions. Once
             your crypto is gone, it's basically impossible to recover.
           </p>
-        </motion.div>
+        </div>
 
         {/* Scammer's Playbook - Expandable cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-5xl mx-auto mb-12"
-        >
+        <div className="max-w-5xl mx-auto mb-12">
           <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8">
             <h3 className="text-xl font-semibold mb-4 text-center">The Scammer's Playbook</h3>
             <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
@@ -377,7 +337,7 @@ const CryptoScamsOverview = forwardRef<HTMLElement>((_, ref) => {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Quiz Grid */}
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
