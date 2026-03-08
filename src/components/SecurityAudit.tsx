@@ -87,7 +87,6 @@ const SecurityAudit = () => {
   useEffect(() => {
     if (progress === 100 && prevProgressRef.current < 100 && !hasReached100) {
       setHasReached100(true);
-      // Fire confetti
       const duration = 2000;
       const end = Date.now() + duration;
 
@@ -97,14 +96,14 @@ const SecurityAudit = () => {
           angle: 60,
           spread: 55,
           origin: { x: 0, y: 0.7 },
-          colors: ['#22c55e', '#3b82f6', '#f59e0b']
+          colors: ['hsl(142, 76%, 36%)', 'hsl(210, 100%, 45%)', 'hsl(38, 92%, 50%)']
         });
         confetti({
           particleCount: 3,
           angle: 120,
           spread: 55,
           origin: { x: 1, y: 0.7 },
-          colors: ['#22c55e', '#3b82f6', '#f59e0b']
+          colors: ['hsl(142, 76%, 36%)', 'hsl(210, 100%, 45%)', 'hsl(38, 92%, 50%)']
         });
 
         if (Date.now() < end) {
@@ -126,9 +125,9 @@ const SecurityAudit = () => {
   };
 
   const getStatusHex = () => {
-    if (progress === 100) return "#22c55e";
-    if (progress >= 50) return "#f59e0b";
-    return "#ef4444";
+    if (progress === 100) return "hsl(142, 76%, 36%)";
+    if (progress >= 50) return "hsl(38, 92%, 50%)";
+    return "hsl(0, 72%, 51%)";
   };
 
   const getStatusText = () => {
@@ -140,17 +139,11 @@ const SecurityAudit = () => {
   };
 
   return (
-    <section id="audit" className="py-24 md:py-32 relative">
+    <section id="audit" className="py-20 md:py-28 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,hsl(210_100%_52%/0.05),transparent_50%)]" />
 
       <div className="container px-4 md:px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
             Interactive
           </span>
@@ -160,17 +153,11 @@ const SecurityAudit = () => {
           <p className="text-muted-foreground text-lg">
             Check off each security practice you follow. Watch your security status improve.
           </p>
-        </motion.div>
+        </div>
 
         <div className="max-w-2xl mx-auto">
           {/* Live status indicator - sticky */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="sticky top-16 md:top-20 z-30 mb-8 bg-background/95 backdrop-blur-sm py-2 -mx-2 px-2 rounded-2xl"
-          >
+          <div className="sticky top-16 md:top-20 z-30 mb-8 bg-background/95 backdrop-blur-sm py-2 -mx-2 px-2 rounded-2xl">
             <div
               className={cn(
                 "flex items-center justify-between p-5 rounded-2xl border transition-all duration-500",
@@ -247,7 +234,7 @@ const SecurityAudit = () => {
                 transition={{ duration: 0.5, ease: "easeOut" }}
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Checklist grouped by category */}
           <div className="space-y-8">

@@ -29,8 +29,8 @@ const goldenRules: GoldenRule[] = [
       '"Your account will be suspended unless you verify immediately!"',
       "Legitimate services never pressure you with artificial deadlines.",
     ],
-    color: "text-red-500",
-    bgColor: "bg-red-500/10 border-red-500/30 hover:border-red-500/50",
+    color: "text-alert",
+    bgColor: "bg-alert/10 border-alert/30 hover:border-alert/50",
   },
   {
     id: "seedphrase",
@@ -43,8 +43,8 @@ const goldenRules: GoldenRule[] = [
       '"Our support team needs your seed phrase to help you"',
       "Your seed phrase is YOUR master key — never share it with anyone.",
     ],
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10 border-orange-500/30 hover:border-orange-500/50",
+    color: "text-risk-high",
+    bgColor: "bg-risk-high/10 border-risk-high/30 hover:border-risk-high/50",
   },
   {
     id: "toogood",
@@ -57,8 +57,8 @@ const goldenRules: GoldenRule[] = [
       '"Elon Musk is giving away free Bitcoin!"',
       "If it sounds too good to be true, it definitely is.",
     ],
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50",
+    color: "text-risk-medium",
+    bgColor: "bg-risk-medium/10 border-risk-medium/30 hover:border-risk-medium/50",
   },
 ];
 
@@ -75,9 +75,9 @@ const GoldenRuleCard = ({ rule, index }: { rule: GoldenRule; index: number }) =>
           "w-full text-left p-5 rounded-xl border transition-all duration-300 flex flex-col",
           rule.bgColor,
           isExpanded && "ring-2 ring-offset-2 ring-offset-background",
-          isExpanded && rule.id === "urgency" && "ring-red-500/50",
-          isExpanded && rule.id === "seedphrase" && "ring-orange-500/50",
-          isExpanded && rule.id === "toogood" && "ring-yellow-500/50",
+          isExpanded && rule.id === "urgency" && "ring-alert/50",
+          isExpanded && rule.id === "seedphrase" && "ring-risk-high/50",
+          isExpanded && rule.id === "toogood" && "ring-risk-medium/50",
         )}
       >
         <div className="flex items-start gap-4 flex-1">
@@ -207,18 +207,12 @@ const ScamsCatalog = () => {
   };
 
   return (
-    <section id="scams" className="py-24 md:py-32 relative">
+    <section id="scams" className="py-20 md:py-28 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_50%,hsl(210_100%_52%/0.05),transparent_50%)]" />
 
       <div className="container px-4 md:px-6 relative">
         {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-12"
-        >
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full bg-alert/10 text-alert text-sm font-semibold mb-4">
             Know Your Enemy
           </span>
@@ -228,16 +222,10 @@ const ScamsCatalog = () => {
           <p className="text-muted-foreground text-lg">
             30+ documented crypto scam techniques. Click any card to learn the attack pattern and your defense strategy.
           </p>
-        </motion.div>
+        </div>
 
         {/* Search bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="max-w-md mx-auto mb-8"
-        >
+        <div className="max-w-md mx-auto mb-8">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <input
@@ -249,16 +237,10 @@ const ScamsCatalog = () => {
               className="w-full h-12 pl-12 pr-4 rounded-xl bg-secondary/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* Category tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-12"
-        >
+        <div className="mb-12">
           {/* Desktop: organized flex layout */}
           <div className="hidden sm:flex flex-wrap justify-center gap-2">
             <button
@@ -327,7 +309,7 @@ const ScamsCatalog = () => {
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Results count */}
         <div className="text-center mb-8">
@@ -401,17 +383,12 @@ const ScamsCatalog = () => {
 
         {/* Show More Button */}
         {hasMoreScams && !showAll && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            className="flex justify-center mt-10"
-          >
+          <div className="flex justify-center mt-10">
             <Button onClick={() => setShowAll(true)} variant="outline" className="gap-2 text-sm px-8 py-6">
               Show More
               <ChevronDown className="w-4 h-4" />
             </Button>
-          </motion.div>
+          </div>
         )}
 
         {searchedScams.length === 0 && (
@@ -421,13 +398,7 @@ const ScamsCatalog = () => {
         )}
 
         {/* Golden Rules */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16"
-        >
+        <div className="mt-16">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-alert/10 border border-alert/20 mb-4">
               <AlertTriangle className="w-4 h-4 text-alert" />
@@ -443,7 +414,7 @@ const ScamsCatalog = () => {
               <GoldenRuleCard key={rule.id} rule={rule} index={index} />
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Modal */}

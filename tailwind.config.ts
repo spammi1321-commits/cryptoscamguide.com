@@ -55,6 +55,14 @@ export default {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
         },
+        "risk-high": {
+          DEFAULT: "hsl(var(--risk-high))",
+          foreground: "hsl(var(--risk-high-foreground))",
+        },
+        "risk-medium": {
+          DEFAULT: "hsl(var(--risk-medium))",
+          foreground: "hsl(var(--risk-medium-foreground))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",

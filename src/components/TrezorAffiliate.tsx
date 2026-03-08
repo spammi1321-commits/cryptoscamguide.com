@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { ExternalLink, Shield, Cpu, Atom } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import trezorSafe3 from "@/assets/trezor-safe-3.png";
@@ -14,9 +12,9 @@ const trezorProducts = [
     tagline: "Essential Security",
     description: "Advanced crypto security with secure element chip and physical buttons. Perfect for beginners.",
     icon: Shield,
-    color: "text-emerald-400",
-    bgColor: "bg-emerald-500/10",
-    borderColor: "border-emerald-500/20",
+    color: "text-success",
+    bgColor: "bg-success/10",
+    borderColor: "border-success/20",
     url: "https://trezor.io/trezor-safe-3",
     image: trezorSafe3,
   },
@@ -38,9 +36,9 @@ const trezorProducts = [
     tagline: "Ultimate Security",
     description: "Best crypto security with the world's first transparent secure element and quantum-ready architecture.",
     icon: Atom,
-    color: "text-violet-400",
-    bgColor: "bg-violet-500/10",
-    borderColor: "border-violet-500/20",
+    color: "text-accent-foreground",
+    bgColor: "bg-accent/50",
+    borderColor: "border-accent",
     url: "https://trezor.io/trezor-safe-7",
     image: trezorSafe7,
   },
@@ -48,17 +46,11 @@ const trezorProducts = [
 
 const TrezorAffiliate = () => {
   return (
-    <section className="py-16 md:py-20 relative">
+    <section className="py-20 md:py-28 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_100%_50%,hsl(210_100%_52%/0.03),transparent_50%)]" />
 
       <div className="container px-4 md:px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-10"
-        >
+        <div className="text-center max-w-2xl mx-auto mb-10">
           <span className="inline-block px-3 py-1 rounded-full bg-success/10 text-success text-xs font-semibold mb-3">
             Recommended Hardware
           </span>
@@ -68,19 +60,15 @@ const TrezorAffiliate = () => {
           <p className="text-muted-foreground text-sm">
             Industry-leading open-source hardware wallets trusted by millions. Your keys, your crypto.
           </p>
-        </motion.div>
+        </div>
 
         <div className="flex flex-col lg:flex-row items-center justify-center gap-5 max-w-4xl mx-auto">
-          {trezorProducts.map((product, index) => (
-            <motion.a
+          {trezorProducts.map((product) => (
+            <a
               key={product.id}
               href={product.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
               className="group relative flex flex-col p-5 rounded-xl border transition-all duration-300 hover:scale-[1.02] w-full max-w-xs lg:max-w-none lg:flex-1 bg-card border-border/50 hover:border-border"
             >
 
@@ -114,19 +102,13 @@ const TrezorAffiliate = () => {
                 Learn More
                 <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="text-center text-xs text-muted-foreground mt-6"
-        >
+        <p className="text-center text-xs text-muted-foreground mt-6">
           * Affiliate links. We may earn a commission at no extra cost to you.
-        </motion.p>
+        </p>
       </div>
     </section>
   );

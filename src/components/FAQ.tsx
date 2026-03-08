@@ -1,5 +1,4 @@
 import { forwardRef } from "react";
-import { motion } from "framer-motion";
 import {
   HelpCircle,
   Key,
@@ -86,15 +85,9 @@ const faqs: FaqItem[] = [
 
 const FAQ = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section ref={ref} id="faq" className="py-20 md:py-32 bg-muted/30">
+    <section ref={ref} id="faq" className="py-20 md:py-28 bg-muted/30">
       <div className="container mx-auto px-4 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <HelpCircle className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Got Questions?</span>
@@ -106,39 +99,32 @@ const FAQ = forwardRef<HTMLElement>((_, ref) => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Common questions about keeping your crypto safe from scammers.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => {
-              const IconComponent = faq.icon;
-              return (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-card border border-border/50 rounded-xl px-6 data-[state=open]:border-primary/30 transition-all duration-300"
-                >
-                  <AccordionTrigger className="text-left font-medium hover:no-underline py-5 group [&[data-state=open]>svg]:rotate-180 [&>svg]:transition-transform [&>svg]:duration-300">
-                    <div className="flex items-center gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors duration-300">
-                        <IconComponent className="w-4 h-4 text-primary" />
-                      </div>
-                      <span>{faq.question}</span>
+        <Accordion type="single" collapsible className="space-y-3">
+          {faqs.map((faq, index) => {
+            const IconComponent = faq.icon;
+            return (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="bg-card border border-border/50 rounded-xl px-6 data-[state=open]:border-primary/30 transition-all duration-300"
+              >
+                <AccordionTrigger className="text-left font-medium hover:no-underline py-5 group [&[data-state=open]>svg]:rotate-180 [&>svg]:transition-transform [&>svg]:duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors duration-300">
+                      <IconComponent className="w-4 h-4 text-primary" />
                     </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-5 leading-relaxed pl-11 animate-in fade-in-0 slide-in-from-top-1 duration-300">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              );
-            })}
-          </Accordion>
-        </motion.div>
+                    <span>{faq.question}</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pb-5 leading-relaxed pl-11 animate-in fade-in-0 slide-in-from-top-1 duration-300">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
       </div>
     </section>
   );

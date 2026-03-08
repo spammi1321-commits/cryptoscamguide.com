@@ -39,6 +39,12 @@
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 0%;
 
+    --risk-high: 25 95% 53%;
+    --risk-high-foreground: 0 0% 100%;
+
+    --risk-medium: 48 96% 53%;
+    --risk-medium-foreground: 0 0% 0%;
+
     --border: 220 20% 18%;
     --input: 220 20% 18%;
     --ring: 210 100% 52%;

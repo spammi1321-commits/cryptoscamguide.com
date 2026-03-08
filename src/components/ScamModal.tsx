@@ -47,8 +47,8 @@ const ScamModal = forwardRef<HTMLDivElement, ScamModalProps>(({ isOpen, onClose,
             <div className={cn(
               "absolute top-0 left-0 right-0 h-32 rounded-t-2xl opacity-20",
               scam.riskLevel === "Critical" && "bg-gradient-to-b from-alert to-transparent",
-              scam.riskLevel === "High" && "bg-gradient-to-b from-orange-500 to-transparent",
-              scam.riskLevel === "Medium" && "bg-gradient-to-b from-yellow-500 to-transparent"
+              scam.riskLevel === "High" && "bg-gradient-to-b from-risk-high to-transparent",
+              scam.riskLevel === "Medium" && "bg-gradient-to-b from-risk-medium to-transparent"
             )} />
 
             <div className="relative p-6 md:p-8">
@@ -72,8 +72,8 @@ const ScamModal = forwardRef<HTMLDivElement, ScamModalProps>(({ isOpen, onClose,
                   className={cn(
                     "flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold",
                     scam.riskLevel === "Critical" && "bg-alert/20 text-alert",
-                    scam.riskLevel === "High" && "bg-orange-500/20 text-orange-400",
-                    scam.riskLevel === "Medium" && "bg-yellow-500/20 text-yellow-400"
+                    scam.riskLevel === "High" && "bg-risk-high/20 text-risk-high",
+                    scam.riskLevel === "Medium" && "bg-risk-medium/20 text-risk-medium"
                   )}
                 >
                   <AlertTriangle className="w-3 h-3" />
@@ -94,18 +94,15 @@ const ScamModal = forwardRef<HTMLDivElement, ScamModalProps>(({ isOpen, onClose,
                 </h3>
                 <div className="space-y-3">
                   {scam.howItWorks.map((step, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
                       className="flex items-start gap-3"
                     >
                       <span className="flex-shrink-0 w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-xs font-bold text-muted-foreground">
                         {index + 1}
                       </span>
                       <p className="text-muted-foreground text-sm leading-relaxed pt-0.5">{step}</p>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -120,11 +117,8 @@ const ScamModal = forwardRef<HTMLDivElement, ScamModalProps>(({ isOpen, onClose,
                 </h3>
                 <div className="space-y-3">
                   {scam.defense.map((tip, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
                       className="flex items-start gap-3"
                     >
                       <span className="flex-shrink-0 w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5">
@@ -133,7 +127,7 @@ const ScamModal = forwardRef<HTMLDivElement, ScamModalProps>(({ isOpen, onClose,
                         </svg>
                       </span>
                       <p className="text-muted-foreground text-sm leading-relaxed">{tip}</p>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
