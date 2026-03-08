@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import { Shield, Linkedin, Facebook, Link2, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -50,13 +48,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,hsl(220_20%_12%),transparent_70%)]" />
 
       <div className="container px-4 md:px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center mb-12"
-        >
+        <div className="flex flex-col items-center text-center mb-12">
           {/* Logo */}
           <div className="flex items-center gap-2.5 mb-6">
             <Shield className="w-8 h-8 text-primary" />
@@ -95,7 +87,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
